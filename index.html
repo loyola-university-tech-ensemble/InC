@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>In C for mobile ensemble play-along</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"> </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.32/Tone.js"> </script>
+  <!-- zero-md for dynamically loading markdown files to HTML -->
+  <script src="https://cdn.jsdelivr.net/npm/@webcomponents/webcomponentsjs@2/webcomponents-loader.min.js"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/gh/zerodevx/zero-md@1/src/zero-md.min.js"></script>
+</head>
+
+<body>
+  <button id="part0" class='menu'>In C Player Start</button>
+  <div id="start" class='contents' style="display: block;">
+    <div id='metronome'></div>
+    <button id="qrButton" class='menu' style="width: 80%;">View on mobile device</button>
+    <div id="QRLink" class='contents' style="display: none;">
+    </div>
+    <button id="aboutButton" class='menu' style="width: 80%;">About this project ...</button>
+    <div id="about" class='contents' style="display: none; text-align: left;">
+      <!-- Edit content in "about.md" -->
+      <zero-md src="about/about.md"></zero-md>
+    </div>
+  </div>
+
+  <button id='part3' class='menu'>Sequences</button>
+  <div id='part3-contents' class='contents' style="display: block;">
+    <p>In C Sequences</p>
+    <div id="sequences" class="sequences"></div>
+    <button id="part3instructionsButton" class='menu' style="width: 80%;">Instructions</button>
+    <div class="contents" style="display: none; text-align: left;">
+      <zero-md src="about/sequences.md"></zero-md>
+    </div>
+  </div>
+
+  <script src="scripts/synths.js"></script>
+  <script src="scripts/pageLayout.js"></script>
+  <script src="scripts/metronome.js"></script>
+  <script src="scripts/sequenceGUI.js"></script>
+  <script src="scripts/sequences.js"></script>
+
+</body>
+
+</html>
