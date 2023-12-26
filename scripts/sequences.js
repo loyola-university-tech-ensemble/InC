@@ -286,13 +286,13 @@ const InC_phrases =
     sequence: [
       { time: "0:0:0", pitch: "e4", dur: "8n" },
       { time: "0:0:2", pitch: "f#4", dur: "8n" },
-      { time: "0:1:0", pitch: "g4", dur: "4n" },
-      { time: "0:2:2", pitch: "g4", dur: "4n" },
-      { time: "1:0:0", pitch: "g4", dur: "4n" },
-      { time: "1:1:2", pitch: "g4", dur: "4n" },
-      { time: "1:1:2", pitch: "g4", dur: "4n" },
-      { time: "1:3:0", pitch: "g4", dur: "4n" },
-      { time: "2:0:2", pitch: "a4", dur: "4n" },
+      { time: "0:1:0", pitch: "g4", dur: "4n." },
+      { time: "0:2:2", pitch: "g4", dur: "4n." },
+      { time: "1:0:0", pitch: "g4", dur: "4n." },
+      { time: "1:1:2", pitch: "g4", dur: "4n." },
+      { time: "1:1:2", pitch: "g4", dur: "4n." },
+      { time: "1:3:0", pitch: "g4", dur: "4n." },
+      { time: "2:0:2", pitch: "a4", dur: "4n." },
       { time: "2:2:0", pitch: "b4", dur: "8n" }
     ]
   },
@@ -340,7 +340,7 @@ const InC_phrases =
       { time: "0:0:1", pitch: "f#4", dur: "16n" },
       { time: "0:0:2", pitch: "e4", dur: "16n" },
       { time: "0:0:3", pitch: "f#4", dur: "16n" },
-      { time: "0:1:0", pitch: "g4", dur: "4n" },
+      { time: "0:1:0", pitch: "g4", dur: "8n" },
       { time: "0:1:2", pitch: "e4", dur: "16n" },
       { time: "0:1:3", pitch: "g4", dur: "16n" },
       { time: "0:2:0", pitch: "f#4", dur: "16n" },
@@ -434,7 +434,7 @@ const InC_phrases =
   },
   {/** #35 by DBW **/
     num: 35,
-    duration: "8:0:0",
+    duration: "9:0:0",
     octave: 0,
     image: "sco35.png",
     sequence: [
@@ -549,15 +549,15 @@ const InC_phrases =
     octave: 0, // leave this
     image: "sco43.png",
     sequence: [ // change this sequence
-      { time: 0, pitch: "f5", dur: "32n" },
-      { time: "0:0:1", pitch: "e5", dur: "32n" },
-      { time: "0:0:2", pitch: "f5", dur: "32n" },
-      { time: "0:0:3", pitch: "e5", dur: "32n" },
-      { time: "0:1:0", pitch: "e5", dur: "16n" },
-      { time: "0:1:2", pitch: "e5", dur: "16n" },
-      { time: "0:2:0", pitch: "e5", dur: "16n" },
-      { time: "0:2:2", pitch: "f5", dur: "32n" },
-      { time: "0:2:3", pitch: "e5", dur: "32n" }
+      { time: 0, pitch: "f5", dur: "16n" },
+      { time: "0:0:1", pitch: "e5", dur: "16n" },
+      { time: "0:0:2", pitch: "f5", dur: "16n" },
+      { time: "0:0:3", pitch: "e5", dur: "16n" },
+      { time: "0:1:0", pitch: "e5", dur: "8n" },
+      { time: "0:1:2", pitch: "e5", dur: "8n" },
+      { time: "0:2:0", pitch: "e5", dur: "8n" },
+      { time: "0:2:2", pitch: "f5", dur: "16n" },
+      { time: "0:2:3", pitch: "e5", dur: "16n" }
     ]
   },
   { /** #44 by Will Stevens **/
