@@ -14,14 +14,25 @@
 </head>
 
 <body>
-  <button id="part0" class='menu'>In C Player Start</button>
+  <div class = "header"> 
+    <div class="header-element">
+    <div class="pbutton" id="powerButton">
+      <div class="pbar"></div>
+    </div></div>
+    <div class = "header-element">Terry Riley's "In C" (1964) for mobile ensemble</div>
+</div>
+
+  <button id="part0" class='menu'>Metronome</button>
   <div id="start" class='contents' style="display: block;">
     <div id='metronome'></div>
   </div>
-  <button id="back-button" class='menu'>back</button>
+  <div class = "player">
+  <div class="upArrow" id="back-button"><div class="tlabel">back</div></div>
+  <!-- <button id="back-button-old" class='menu'>back</button> -->
   <div id="sequences" class="sequences"></div>
-  <button id="forward-button" class='menu'>forward</button>
-
+  <div class="downArrow" id="forward-button"><div class="blabel">forward</div></div>
+  <!-- <button id="forward-button" class='menu'>forward</button> -->
+  </div>
   <button id='part3' class='menu'>About</button>
   <div id='part3-contents' class='contents' style="display: block;">
   

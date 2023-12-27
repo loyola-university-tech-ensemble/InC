@@ -29,6 +29,120 @@
   width: 50px;
 }
 
+.header {
+  border: 0px;
+  margin: 1px;
+  padding: 0;
+  text-align: left;
+}
+.header-element {
+  display: inline-block;
+  border: 0px;
+  margin-left: 10px;
+  padding: 0;
+  vertical-align: middle;
+}
+
+.player {
+  display: grid;
+  justify-content: center;
+}
+
+.upArrow {
+  width: 0;  
+  height: 0;  
+  border-left: 190px solid rgb(74, 182, 74); 
+  border-right: 190px solid rgb(74, 182, 74);
+  color: #ffffff;
+  border-bottom: 30px solid rgb(7, 153, 7); 
+  margin: 5px;
+  position: sticky;
+  top: 0px;
+  border-radius: 4px;
+  justify-self: center;
+}
+.upArrow:active{
+  border-bottom: 30px solid rgb(144, 236, 144); 
+}
+.downArrow {
+  width: 0;  
+  height: 0;  
+  border-left: 190px solid rgb(74, 182, 74); 
+  border-right: 190px solid rgb(74, 182, 74);
+  color: #ffffff;
+  border-top: 30px solid rgb(7, 153, 7); 
+  margin-left:15px;
+  margin-bottom: 5px;
+  position: sticky;
+  top: 0px;
+  border-radius: 4px;
+  text-align: center;
+}
+.downArrow:active{
+  border-top: 30px solid rgb(144, 236, 144); 
+}
+
+.tlabel{
+  position: relative;
+  width: 100px;
+  height: 35px;
+  left: -50px;
+  right: 50px;
+  top: 5px;
+  text-align: center;
+  align-items: center;
+}
+.blabel{
+  position: relative;
+  width: 100px;
+  height: 35px;
+  left: -50px;
+  right: 50px;
+  top: -25px;
+  text-align: center;
+  align-items: center;
+}
+
+.pbutton {
+  /* power button effect courtesy of https://csswolf.com/power-button-effect-in-css/*/
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+.pbutton::before {
+  /* pseudo-elements don't appear unless content property is declared */
+  content: "";
+  /* design the element */
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
+  border: 3px solid #afa;
+  position: absolute;
+}
+.pbar {
+  height: 30%;
+  width: 2px;
+  background: #afa;
+  border-radius: 1px; /* for rounded ends */
+  box-shadow: 0 0 0 3px white;
+  position: absolute; 
+  top: 4px;
+}
+.pbutton:active{
+  border: 2px solid lightgreen;
+}
+.pbutton:active .pbar {
+  background: lightgreen;
+}
+
+.pbutton:active::before {
+  border-color: lightgreen;
+}
+
 .box {
   height: 40px;
   width: 40px;
