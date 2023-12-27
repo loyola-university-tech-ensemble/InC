@@ -19,7 +19,40 @@ menus.forEach((menuButton) => {
     })
   }
 });
+let sequenceDiv = document.getElementById("sequences");
+let backButton = document.getElementById("back-button");
+let forwardButton = document.getElementById("forward-button");
+let sequenceNum = 0;
 
+forwardButton.addEventListener('click', () => {
+  sequenceNum ++;
+  if(sequenceNum > 49){
+    sequenceNum = 49; // stop 4 from the end
+  }
+  let y = sequenceNum * 74.25;
+  sequenceDiv.scroll({top: y, left: 0, behavior: "smooth",});
+  console.log(sequenceNum);
+  for(let i = 0; i < sequenceNum; i++){
+//    sketches[i].noLoop();
+  }
+  if(sequenceNum > 0){
+    sketches[sequenceNum-1].noLoop();
+  }
+});
+
+
+backButton.addEventListener('click', () => {
+  sequenceNum --;
+  if(sequenceNum < 0){
+    sequenceNum = 0;
+  }
+  let y = sequenceNum * 74.25;
+  sequenceDiv.scroll({top: y, left: 0, behavior: "smooth",})
+  console.log(sequenceNum);
+  for(let i = sequenceNum + 4; i < 53; i++){
+    sketches[i].noLoop(); //unloop everything past the visible range
+  }
+});
   let about = document.getElementById("QRLink");
   let qrCode = document.createElement("img");
   let link = "https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=";

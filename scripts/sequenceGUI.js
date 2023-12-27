@@ -106,6 +106,11 @@ const seqGUI = p => {
     }
 
   }
+  p.noLoop = function(){
+    looping = false;
+    part.loop = false;
+    timerGUI.loop = false;
+  }
 
   p.upOctave = function(){
     if(obj.hasOwnProperty("octave")){

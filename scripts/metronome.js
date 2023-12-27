@@ -3,7 +3,7 @@
 * Also creates a transport start/stop button
 */
 
-var bpm = 120; // default tempo
+var bpm = 138; // default tempo
 
 console.log("default tempo: " + bpm + " bpm");
 
@@ -84,6 +84,14 @@ click.className = "metro-button";
 click.id = "click";
 click.addEventListener('click', () => {
   startClick();  
+});
+// noloop
+let noloop = document.createElement("button");
+noloop.innerHTML = "noloop";
+noloop.className = "metro-button";
+noloop.id = "noloop";
+noloop.addEventListener('click', () => {
+  sketches[0].noLoop();  
 });
 
 const clickLoop = new Tone.Loop((time) => {
@@ -188,5 +196,6 @@ m.appendChild(transport);
 m.appendChild(tempoLabel);
 m.appendChild(tempo);
 m.appendChild(click);
+//m.appendChild(noloop); // turns off loop for specific sequence sketch
 m.appendChild(document.createElement("br"));
 m.appendChild(tempoSync);

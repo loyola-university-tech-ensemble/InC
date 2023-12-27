@@ -5,6 +5,11 @@
   width: 350px;
 }
 
+.sequences{
+  height: 295px;
+  overflow: hidden;
+}
+
 .synthSequenceMenu {
   height: 30px;
   width: 100px;

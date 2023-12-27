@@ -680,6 +680,7 @@ const InC_phrases =
     ]
   }
 ];
+var sketches = new Array(); // global array of sequence GUI sketches
 
 makeSeqPlayer(InC_phrases);
 
@@ -698,9 +699,11 @@ function makeSeqPlayer(obj){
       let seqDiv = document.getElementById("sequences");
       let d = document.createElement('div');
       d.className = "seqPlayer";
+      d.id = "seqence_" + (i + 1);
       seqDiv.appendChild(d);
       let sketch = new p5(seqGUI, d); // invoke p5 and add it to the div
       sketch.setObj(obj[i]); // hand a reference to the sequence to the sketch
+      sketches.push(sketch); // add to a global array for later
     }
 
   }  
