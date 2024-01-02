@@ -79,6 +79,7 @@ const seqGUI = p => {
       instrument.triggerAttackRelease(Tone.Frequency(note.pitch).transpose(obj.octave * 12), d, time);
   
       }), obj.sequence).start(t);
+    console.log("start sequence");
     part.loopEnd = obj.duration;
     timerGUI = new Tone.Part(((time, setTime) =>{
       let d = setTime.dur
@@ -156,7 +157,8 @@ const seqGUI = p => {
   
   p.mousePressed = function(){
     //play button
-    if(p.dist(p.mouseX, p.mouseY, playButton.x, playButton.y) < playButton.w/2 && div.style["display"] == "block"){
+    if(p.dist(p.mouseX, p.mouseY, playButton.x, playButton.y) < playButton.w/2){
+      console.log("play button");
       if(part.state == "started"){
         part.dispose();
         timerGUI.dispose();
@@ -180,9 +182,9 @@ const seqGUI = p => {
         timerGUI.loop = false;
       } else {
         looping = true;
-        part.loop = true;
         timerGUI.loop = true;
         console.log("Looping: " + looping);
+        part.loop = true;
       }
     }
     // rhythmic augmentation button

@@ -41,6 +41,10 @@ transport.id = "transport";
 transport.addEventListener('click', () => {
   startTransport();
 });
+let pB = document.getElementById("powerButton");
+pB.addEventListener('click', () => {
+  startTransport();
+});
 function startTransport(){
   //make this function accessible from other buttons
   switch (Tone.Transport.state) {
@@ -50,12 +54,14 @@ function startTransport(){
       console.log("transport " + Tone.Transport.state);
       transport.style.background = '#4caf50';
       transport.innerHTML = "Stop";
+      pB.classList.add('active');
       break;
     case "started":
       Tone.Transport.stop();
       console.log("transport " + Tone.Transport.state);
       transport.style.background = '#a8a8a8';
       transport.innerHTML = "Start";
+      pB.classList.remove('active');
       break;
     default:
       Tone  .Transport.start();
