@@ -346,10 +346,12 @@ class LoopButton{
   }
   display(label, flag){
     if(flag){
-      this.bgcol = this.p.color("#4cbf50");
+      this.bgcol = this.p.color("#febc17");
+      this.acol = this.p.color('#5d0024');
     }
     else{
       this.bgcol = this.p.color(190);
+      this.acol = this.p.color(100);
     }
     this.p.push();
     this.p.translate(this.x, this.y);
@@ -385,7 +387,7 @@ class PianoRoll {
   display(dur, seq){
     this.p.push();
     this.p.translate(this.x, this.y);
-    this.p.fill(210, 110); // pale green, translucent
+    this.p.fill(210, 110); // pale grey, translucent
     this.p.rect(0, 0, this.w, this.h, 5); //bounding rectangle
     let d = Tone.Time(dur).toSeconds();
     let measure = Tone.Time("1m").toSeconds(); // calculate 1m for current tempo
@@ -409,7 +411,9 @@ class PianoRoll {
       num_measures = 1;
       barline = this.w;
     }
-    this.p.fill(222, 255, 222, 110); // pale green, translucent
+//    this.p.fill(222, 255, 222, 110); // pale green, translucent
+//rgba(254,188,23,255)
+    this.p.fill('#ffe4a2'); // pale yellow
     this.p.rect(0, 0, window, this.h, 5); //note window
     for(let i = 0; i < num_measures; i++){
       //barlines
@@ -421,7 +425,7 @@ class PianoRoll {
       this.p.line(i * barline, 0, i * barline, this.h);
     }
     //draw notes
-    this.p.fill("green");
+    this.p.fill("#a0144faf");
     this.p.noStroke();
     if(Array.isArray(seq)){
       for(let i = 0; i < seq.length; i++){

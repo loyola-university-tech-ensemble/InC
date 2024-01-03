@@ -60,10 +60,10 @@ body{
 .upArrow {
   width: 0;  
   height: 0;  
-  border-left: 190px solid rgb(74, 182, 74); 
-  border-right: 190px solid rgb(74, 182, 74);
-  color: #ffffff;
-  border-bottom: 35px solid rgb(7, 153, 7); 
+  border-left: 190px solid #a0144f; 
+  border-right: 190px solid #a0144f;
+  color: #febc17;
+  border-bottom: 35px solid #5d0024; 
   margin: 5px;
   position: sticky;
   top: 0px;
@@ -71,15 +71,15 @@ body{
   justify-self: center;
 }
 .upArrow:active{
-  border-bottom: 30px solid rgb(144, 236, 144); 
+  border-bottom: 30px solid #a0144f; 
 }
 .downArrow {
   width: 0;  
   height: 0;  
-  border-left: 190px solid rgb(74, 182, 74); 
-  border-right: 190px solid rgb(74, 182, 74);
-  color: #ffffff;
-  border-top: 35px solid rgb(7, 153, 7); 
+  border-left: 190px solid #a0144f; 
+  border-right: 190px solid #a0144f;
+  color: #febc17;
+  border-top: 35px solid #5d0024; 
   margin-bottom: 5px;
   position: sticky;
   top: 0px;
@@ -87,7 +87,7 @@ body{
   justify-self: center;
 }
 .downArrow:active{
-  border-top: 30px solid rgb(144, 236, 144); 
+  border-top: 30px solid #a0144f; 
 }
 
 .tlabel{
@@ -232,21 +232,21 @@ body{
 .play-button{
   border: 4px solid;
   height: 40px;
-  background-color: #4caf50;
+  background-color: #a0144f;
   border-radius: 8px;
   width: 180px;
   padding: 5px 5px;
-  color: white;
+  color: #febc17;
 }
 
 .metro-button {
   border: 4px solid;
   height: 40px;
-  background-color: #a8a8a8;
+  background-color: #a0144f;
   border-radius: 8px;
   width: 80px;
   padding: 5px 5px;
-  color: white;
+  color: #febc17;
 }
 
 .tempo-box {
@@ -267,13 +267,12 @@ body{
 
 .menu {
   border: 4px solid;
-  background-color: #4caf50;
-  /* Green */
+  background-color: #a0144f;
   border-radius: 8px;
   width: 100%;
   height: 40px;
   padding: 5px 5px;
-  color: white;
+  color: #febc17;
 }
 
 .form-control {
@@ -330,7 +329,7 @@ input[type="range"]::-webkit-slider-thumb {
   /* Centers thumb on the track */
 
   /*custom styles*/
-  background-color: #4caf50;
+  background-color: #a0144f;
   height: 2rem;
   width: 1rem;
 }

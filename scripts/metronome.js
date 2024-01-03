@@ -198,10 +198,10 @@ tempoSync.addEventListener('change', function() {
 }, false);
 
 // add metronome elements to the <div>
-m.appendChild(transport);
+//m.appendChild(transport);
 m.appendChild(tempoLabel);
 m.appendChild(tempo);
 m.appendChild(click);
 //m.appendChild(noloop); // turns off loop for specific sequence sketch
-m.appendChild(document.createElement("br"));
+//m.appendChild(document.createElement("br"));
 m.appendChild(tempoSync);
