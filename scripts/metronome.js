@@ -119,7 +119,8 @@ function startClick(){
     case "off":
       metro = "on";
       console.log("click " + metro);
-      click.style.background = '#4caf50'; 
+      click.style.background = '#e1a820'; 
+      click.style.color = '#5d0024';
       if(Tone.Transport.state == "stopped"){
         startTransport();
       }
@@ -139,7 +140,8 @@ function startClick(){
     case "on":
       metro = "off";
       console.log("click " + metro);
-      click.style.background = '#a8a8a8';
+      click.style.background = '#a0144f';
+      click.style.color = '#febc17';
       clickLoop.stop();
       dbClickLoop.stop();
       break;
