@@ -699,7 +699,7 @@ function makeSeqPlayer(obj){
       let seqDiv = document.getElementById("sequences");
       let d = document.createElement('div');
       d.className = "seqPlayer";
-      d.id = "seqence_" + (i + 1);
+      d.id = "sequence_" + (i + 1);
       seqDiv.appendChild(d);
       let sketch = new p5(seqGUI, d); // invoke p5 and add it to the div
       sketch.setObj(obj[i]); // hand a reference to the sequence to the sketch

@@ -6,9 +6,10 @@
 }
 
 .sequences{
-  height: 295px;
-  overflow: scroll;
+  max-height: 295px;
+  overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
+  position: relative
 }
 
 .synthSequenceMenu {
@@ -33,6 +34,7 @@
 body{
   display: grid;
   justify-content: center;
+  padding: auto;
 }
 
 .header {
@@ -44,6 +46,8 @@ body{
   align-items: center;
   display: flex;
   justify-content: center;
+  background-color: #fbfbfb;
+
 }
 .header-element {
   display: inline-block;
