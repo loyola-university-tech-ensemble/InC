@@ -7,7 +7,7 @@
 
 .sequences{
   max-height: 295px;
-  overflow-y: hidden;
+  overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   position: relative
 }
