@@ -10,6 +10,7 @@
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   position: relative
+  scroll-snap-type: x mandatory;
 }
 
 .synthSequenceMenu {
