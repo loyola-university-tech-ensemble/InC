@@ -42,20 +42,22 @@ function scroll(e){
   }
   sequenceNum += inc;
   
-  if(sequenceNum > 49){
-    sequenceNum = 49; // stop 4 from the end
+  if(sequenceNum > (sketches.length - 4)){
+    sequenceNum = sketches.length - 4; // stop 4 from the end
   } else if(sequenceNum < 0){
     sequenceNum = 0; // stop at 0
   }
   let id = "sequence_" + (sequenceNum +1);
   let seq = document.getElementById(id);
   let y = seq.offsetTop;
-  //let y = sequenceNum * 74.25;
+//let y = sequenceNum * 74.25;
   sequenceDiv.scroll({top: y, left: 0, behavior: "smooth",});
-  if(sequenceNum > 0){
-    sketches[sequenceNum-1].noLoop();
-  }
-  sketches[sequenceNum+4].noLoop();
+  
+  if(e.currentTarget.id == "back-button"){
+    sketches[(sequenceNum + 4)].noLoop(); // unloop
+  } else if(e.currentTarget.id == "forward-button" && sequenceNum > 0){
+    sketches[sequenceNum - 1].noLoop();
+  } 
 } 
 
 /** generate custom QR code leading to the hosted page (wherever it is) */
@@ -68,4 +70,3 @@ let thisPage = window.location.href;
 qrCode.src = link + thisPage;
 //  qrCode.src = "https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=https://www.mrc-productivity.com/techblog/?p=1172";
 qrLink.appendChild(qrCode);
-  

@@ -9,14 +9,25 @@
   max-height: 295px;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
-  position: relative
+  position: relative;
 }
 
+.sync {
+  width: 350px;
+  position: relative;
+  margin: auto;
+}
+.metronome {
+  align-content: center;
+  position: relative;
+  align-items: center;
+}
 .synthSequenceMenu {
   height: 30px;
-  width: 100px;
-  background-color: #c9fbbc;
+  width: 150px;
+  background-color: #fde4a9;
   text-align: center;
+  color: #5d0024;
 }
 
 .synthMenu {
@@ -261,6 +272,7 @@ body{
 .metro {
   background-color: #eeeeee;
   text-align: center;
+  position: relative;
 
 }
 

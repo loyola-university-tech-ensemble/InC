@@ -32,7 +32,10 @@ var metro = "off"; // metronome state
 
 let m = document.getElementById("metronome");
 //'metronome' div is in the Start menu
-
+let sync = document.createElement("div");
+sync.className = "sync";
+let mGUI = new p5(metroGUI, sync);
+m.appendChild(sync);
 // transport button
 let transport = document.createElement("button");
 transport.innerHTML = "Transport";
@@ -45,6 +48,26 @@ let pB = document.getElementById("powerButton");
 pB.addEventListener('click', () => {
   startTransport();
 });
+
+let tempSync = document.getElementById("tSlider");
+console.log("tempo slider: " + tempSync);
+
+tempSync.addEventListener('input', function() {
+  // adjust tempo +/- 10%
+  //console.log(this.value * 0.01 + 1);
+  Tone.Transport.bpm.value = bpm * (this.value * 0.01 + 1);
+//  console.log(Tone.Transport.bpm.value);
+  tempo.value = Tone.Transport.bpm.value;
+}, false);
+
+tempSync.addEventListener('change', function() {
+  // snap back to original bpm on release
+  this.value = 0;
+  Tone.Transport.bpm.value = bpm;
+  tempo.value = Tone.Transport.bpm.value;
+z
+}, false);
+
 function startTransport(){
   //make this function accessible from other buttons
   switch (Tone.Transport.state) {
@@ -175,6 +198,7 @@ function getNextMeasure(){
 
 // Adjust metronome sync
 // speed up/slow down metronome by as much as 10% to get in phase with external clicks
+/*
 let tempoSync = document.createElement('input');
 tempoSync.type = 'range';
 tempoSync.min = -10.0;
@@ -182,28 +206,12 @@ tempoSync.max = 10.0;
 tempoSync.step = 0.1;
 tempoSync.id = "tempoSync";
 tempoSync.value = 0;
-
-tempoSync.addEventListener('input', function() {
-  // adjust tempo +/- 10%
-  //console.log(this.value * 0.01 + 1);
-  Tone.Transport.bpm.value = bpm * (this.value * 0.01 + 1);
-//  console.log(Tone.Transport.bpm.value);
-  tempo.value = Tone.Transport.bpm.value;
-}, false);
-
-tempoSync.addEventListener('change', function() {
-  // snap back to original bpm on release
-  this.value = 0;
-  Tone.Transport.bpm.value = bpm;
-  tempo.value = Tone.Transport.bpm.value;
-
-}, false);
-
+*/
 // add metronome elements to the <div>
 //m.appendChild(transport);
-m.appendChild(tempoLabel);
-m.appendChild(tempo);
-m.appendChild(click);
+//m.appendChild(tempoLabel);
+//m.appendChild(tempo);
+//m.appendChild(click);
 //m.appendChild(noloop); // turns off loop for specific sequence sketch
 //m.appendChild(document.createElement("br"));
-m.appendChild(tempoSync);
+// m.appendChild(tempoSync);
