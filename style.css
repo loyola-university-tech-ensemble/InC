@@ -3,14 +3,15 @@
   margin: 0 auto;
   display: block;
   width: 350px;
+  scroll-snap-align: start;
 }
 
 .sequences{
   max-height: 295px;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
-  position: relative
-  scroll-snap-type: x mandatory;
+  position: relative;
+  scroll-snap-type: y mandatory;
 }
 
 .synthSequenceMenu {
