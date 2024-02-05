@@ -3,6 +3,7 @@
   margin: 0 auto;
   display: block;
   width: 350px;
+  scroll-snap-align: start;
 }
 
 .sequences{
@@ -10,6 +11,10 @@
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   position: relative;
+<<<<<<< HEAD
+=======
+  scroll-snap-type: y mandatory;
+>>>>>>> 9e0eaf28eb86a2374552b7ae56c335fa82b873bd
 }
 
 .sync {
