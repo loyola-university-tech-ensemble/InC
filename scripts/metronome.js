@@ -65,7 +65,7 @@ tempSync.addEventListener('change', function() {
   this.value = 0;
   Tone.Transport.bpm.value = bpm;
   tempo.value = Tone.Transport.bpm.value;
-z
+
 }, false);
 
 function startTransport(){

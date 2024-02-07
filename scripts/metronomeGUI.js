@@ -13,10 +13,26 @@ const metroGUI = p => {
         selectSynth.option("Synth 1");
         selectSynth.option("FM Synth");
         selectSynth.option("Something Bouncy");
+        //tempo sync
         syncSlider = p.createSlider(-10, 10, 0, 0.5);
         syncSlider.id("tSlider");
         syncSlider.position(p.width/2-75, p.height/2-30);
         syncSlider.size(150);
+
+        syncSlider.input(() =>{
+            Tone.Transport.bpm.value = bpm * (syncSlider.value() * 0.01 + 1);
+            //  console.log(Tone.Transport.bpm.value);
+              //tempo.value = Tone.Transport.bpm.value;
+        });
+
+        syncSlider.changed(() => {
+            // snap back to original bpm on release
+            syncSlider.value(0); 
+            Tone.Transport.bpm.value = bpm;
+            //tempo.value = Tone.Transport.bpm.value;
+          
+          }, false);
+        //buttons
         click = new SyncButton(p, 40, 30, "click");
         tap = new SyncButton(p, 40, 90, "tap sync");
         ost = new SyncButton(p, 300, p.height/2, "ostinato");
@@ -26,9 +42,10 @@ const metroGUI = p => {
         p.background(200);
         p.textAlign(p.CENTER);
         p.fill(0);
-        p.text("tempo", p.width/2, 10);
+        p.text("'phase sync' tempo", p.width/2, 10);
         let t = Math.trunc(Tone.Transport.bpm.value);
-        p.text(t + " bpm", p.width/2, p.height / 2+5);
+        // let t = Math.trunc(bpm); //bpm defined globally in metronome.js
+        p.text(t + " bpm", p.width/2, p.height / 2+8);
         p.textAlign(p.LEFT);
         p.text("<-slower", p.width/2 - 75, p.height/2);
         p.textAlign(p.RIGHT);
@@ -36,6 +53,21 @@ const metroGUI = p => {
         tap.display();
         click.display();
         ost.display();
+    }
+
+    p.mousePressed = function(){
+        let d = document.getElementById("metronome");
+        if(d.display == "block"){
+            if(p.dist(p.mouseX, p.mouseY, click.x, click.y) < 30){
+                //start click
+            }
+            if(p.dist(p.mouseX, p.mouseY, tap.x, tap.y) < 30){
+                //tap sync
+            }
+            if(p.dist(p.mouseX, p.mouseY, ost.x, ost.y) < 30){
+                //start ostinato
+            }
+        }
     }
 }
 

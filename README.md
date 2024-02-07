@@ -5,6 +5,6 @@ This is a fresh start on the ongoing 'In C' for laptop/mobile ensemble. This ver
 New features 
 - a "piano roll" style sequence display, with a playback cursor
 - looping
-- rhythmiuc augmentation
+- rhythmic augmentation
 - eighth-note shift
 - octave shift
