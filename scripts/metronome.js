@@ -28,7 +28,46 @@ const clickSampler = new Tone.Sampler(
   }
 ).toDestination();
 
+const ostSynth = new Tone.PolySynth(Tone.Synth).toDestination();
+const ostLoop = new Tone.Part(function (time, value){
+  ostSynth.triggerAttackRelease(value.note, "16n", time);
+}, [{"time" : 0, "note" : ["C3", "C5"]}, 
+    {"time" : "0:1:0", "note" : ["C5"]},
+    {"time" : "0:2:0", "note" : ["C5"]},
+    {"time" : "0:3:0", "note" : ["C5"]}
+   ]);
+ostLoop.loop = true;
+
+function startOstinato(){
+  switch(ostinato){
+    case "off":
+      ostinato = "on";
+      console.log("ostinato " + ostinato);
+      //click.style.background = '#e1a820'; 
+      //click.style.color = '#5d0024';
+      if(Tone.Transport.state == "stopped"){
+        startTransport();
+      }
+
+      ostLoop.start(getNextbeat()); // start on next quarter note
+      //dbClickLoop.start(getNextMeasure());
+      break;
+    case "on":
+      ostinato = "off";
+      console.log("ostinato " + ostinato);
+      //click.style.background = '#a0144f';
+      //click.style.color = '#febc17';
+      ostLoop.stop();
+      //dbClickLoop.stop();
+      break;
+    default:
+      Tone.Transport.start();
+  }
+}
+
+
 var metro = "off"; // metronome state
+var ostinato = "off"; // ostinato state
 
 let m = document.getElementById("metronome");
 //'metronome' div is in the Start menu
@@ -48,7 +87,7 @@ let pB = document.getElementById("powerButton");
 pB.addEventListener('click', () => {
   startTransport();
 });
-
+/*
 let tempSync = document.getElementById("tSlider");
 console.log("tempo slider: " + tempSync);
 
@@ -67,7 +106,7 @@ tempSync.addEventListener('change', function() {
   tempo.value = Tone.Transport.bpm.value;
 
 }, false);
-
+*/
 function startTransport(){
   //make this function accessible from other buttons
   switch (Tone.Transport.state) {
@@ -147,18 +186,9 @@ function startClick(){
       if(Tone.Transport.state == "stopped"){
         startTransport();
       }
-/*      let t = Tone.Transport.position;    
-      let times = t.split(':');
-      times[2] = 0; // set to downbeat;
-      times[1] = Number(times[1]) + 1; // move up to the next downbeat;
-      if (times[1] > 3) {
-        times[1] = 0;
-        times[0] = Number(times[0]) + 1;
-      }
-      t = times[0] + ":" + times[1] + ":" + times[2];
-*/
+
       clickLoop.start(getNextbeat()); // start on next quarter note
-      dbClickLoop.start(getNextMeasure());
+      //dbClickLoop.start(getNextMeasure());
       break;
     case "on":
       metro = "off";

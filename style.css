@@ -24,6 +24,15 @@
   position: relative;
   align-items: center;
 }
+.syncButton {
+  height: 55px;
+  width: 70px;
+  background-color: #a0144f;
+  border-color: #febc17;
+  color: #febc17;
+  border-radius: 10px;
+  border-width: 5px;
+}
 .synthSequenceMenu {
   height: 30px;
   width: 150px;

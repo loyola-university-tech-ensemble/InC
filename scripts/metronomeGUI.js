@@ -3,6 +3,7 @@ const metroGUI = p => {
     var selectSynth;
     var syncSlider;
     var click, tap, ost;
+    var clickButton, tapButton, ostButton;
 
     p.setup = function(){
         p.createCanvas(350, 120);
@@ -33,9 +34,29 @@ const metroGUI = p => {
           
           }, false);
         //buttons
+
         click = new SyncButton(p, 40, 30, "click");
         tap = new SyncButton(p, 40, 90, "tap sync");
         ost = new SyncButton(p, 300, p.height/2, "ostinato");
+
+        clickButton = p.createButton("click");
+        clickButton.class("syncButton");
+        clickButton.position(10, 2);
+        clickButton.mousePressed(()=>{
+            startClick();
+        })
+
+        ostButton = p.createButton("ostinato");
+        ostButton.class("syncButton");
+        ostButton.position(10, 60);
+        ostButton.mousePressed(()=>{
+            startOstinato();
+        })
+
+        tapButton = p.createButton("tap sync");
+        tapButton.class("syncButton");
+        tapButton.position(265, 30);
+
     }
 
     p.draw = function(){
@@ -50,16 +71,16 @@ const metroGUI = p => {
         p.text("<-slower", p.width/2 - 75, p.height/2);
         p.textAlign(p.RIGHT);
         p.text("faster->", p.width/2 + 75, p.height/2);
-        tap.display();
-        click.display();
-        ost.display();
+        //tap.display();
+        //click.display();
+        // ost.display();
     }
 
     p.mousePressed = function(){
         let d = document.getElementById("metronome");
-        if(d.display == "block"){
+    //    if(d.display == "block"){
             if(p.dist(p.mouseX, p.mouseY, click.x, click.y) < 30){
-                //start click
+                //startClick(); 
             }
             if(p.dist(p.mouseX, p.mouseY, tap.x, tap.y) < 30){
                 //tap sync
@@ -67,7 +88,7 @@ const metroGUI = p => {
             if(p.dist(p.mouseX, p.mouseY, ost.x, ost.y) < 30){
                 //start ostinato
             }
-        }
+    //    }
     }
 }
 
