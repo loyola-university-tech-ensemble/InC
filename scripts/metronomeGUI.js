@@ -11,9 +11,13 @@ const metroGUI = p => {
         selectSynth = p.createSelect();
         selectSynth.class("synthSequenceMenu");
         selectSynth.position((p.width / 2) - 75, p.height * 2/3);
-        selectSynth.option("Synth 1");
-        selectSynth.option("FM Synth");
-        selectSynth.option("Something Bouncy");
+        for(let i =0; i < synthLibrary.length; i++){
+            selectSynth.option(synthLibrary[i].name, i);
+        }
+        //use menu to change ostSynth
+        ostSynth = synthLibrary[0].synth;
+        selectSynth.changed(p.chooseSynth);
+        
         //tempo sync
         syncSlider = p.createSlider(-10, 10, 0, 0.5);
         syncSlider.id("tSlider");
@@ -59,6 +63,11 @@ const metroGUI = p => {
 
     }
 
+    p.chooseSynth = function(){
+        ostSynth = synthLibrary[selectSynth.value()].synth;
+        //console.log(selectSynth.value());   
+      }
+
     p.draw = function(){
         p.background(200);
         p.textAlign(p.CENTER);
@@ -71,6 +80,7 @@ const metroGUI = p => {
         p.text("<-slower", p.width/2 - 75, p.height/2);
         p.textAlign(p.RIGHT);
         p.text("faster->", p.width/2 + 75, p.height/2);
+        //ostSynth = synthLibrary[selectSynth.selected()];
         //tap.display();
         //click.display();
         // ost.display();

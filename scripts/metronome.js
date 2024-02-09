@@ -9,26 +9,8 @@ console.log("default tempo: " + bpm + " bpm");
 
 Tone.Transport.bpm.value = bpm;
 
-// default click tone for metronome
-//const metroClick = new Tone.Synth().toDestination();
-const clickSampler = new Tone.Sampler(
-  {
-    urls: {
-      "A3": "drums/Kick.wav",
-      "A#3": "drums/Kick.wav",
-      "B3": "drums/Snare.wav",
-      "C4": "drums/Claps.wav",
-      "C#4": "drums/Shot1.wav",
-      "D#4": "drums/Shot2.wav",
-      "D4": "drums/WhiteNoise.wav",
-      "E4": "drums/ReverseCymbal.wav",
-      "F4": "drums/HiHat_Closed.wav",
-      "F#4": "drums/HiHat_Open.wav"
-    },
-  }
-).toDestination();
-
-const ostSynth = new Tone.PolySynth(Tone.Synth).toDestination();
+//const ostSynth = new Tone.PolySynth(Tone.Synth).toDestination();
+var ostSynth = synthLibrary[1].synth; // pull from synth library
 const ostLoop = new Tone.Part(function (time, value){
   ostSynth.triggerAttackRelease(value.note, "16n", time);
 }, [{"time" : 0, "note" : ["C3", "C5"]}, 
@@ -65,7 +47,6 @@ function startOstinato(){
   }
 }
 
-
 var metro = "off"; // metronome state
 var ostinato = "off"; // ostinato state
 
@@ -87,26 +68,7 @@ let pB = document.getElementById("powerButton");
 pB.addEventListener('click', () => {
   startTransport();
 });
-/*
-let tempSync = document.getElementById("tSlider");
-console.log("tempo slider: " + tempSync);
 
-tempSync.addEventListener('input', function() {
-  // adjust tempo +/- 10%
-  //console.log(this.value * 0.01 + 1);
-  Tone.Transport.bpm.value = bpm * (this.value * 0.01 + 1);
-//  console.log(Tone.Transport.bpm.value);
-  tempo.value = Tone.Transport.bpm.value;
-}, false);
-
-tempSync.addEventListener('change', function() {
-  // snap back to original bpm on release
-  this.value = 0;
-  Tone.Transport.bpm.value = bpm;
-  tempo.value = Tone.Transport.bpm.value;
-
-}, false);
-*/
 function startTransport(){
   //make this function accessible from other buttons
   switch (Tone.Transport.state) {
@@ -165,14 +127,15 @@ noloop.addEventListener('click', () => {
 const clickLoop = new Tone.Loop((time) => {
 	// triggered every quarter note.
 	//console.log(time);
-  clickSampler.triggerAttackRelease("F4", "8n", time);
+//  clickSampler.triggerAttackRelease("F4", "8n", time);
+  drumSampler.triggerAttackRelease("F4", "8n", time);
   //metroClick.triggerAttackRelease(500, "128n", time);
 }, "4n");
 
 const dbClickLoop = new Tone.Loop((time) => {
 	// triggered every measure.
 	//console.log(time);
-  clickSampler.triggerAttackRelease("A3", "8n", time);
+  drumSampler.triggerAttackRelease("A3", "8n", time);
   //metroClick.triggerAttackRelease(500, "128n", time);
 }, "1m");
 
@@ -226,22 +189,3 @@ function getNextMeasure(){
   return t;
 }
 
-// Adjust metronome sync
-// speed up/slow down metronome by as much as 10% to get in phase with external clicks
-/*
-let tempoSync = document.createElement('input');
-tempoSync.type = 'range';
-tempoSync.min = -10.0;
-tempoSync.max = 10.0;
-tempoSync.step = 0.1;
-tempoSync.id = "tempoSync";
-tempoSync.value = 0;
-*/
-// add metronome elements to the <div>
-//m.appendChild(transport);
-//m.appendChild(tempoLabel);
-//m.appendChild(tempo);
-//m.appendChild(click);
-//m.appendChild(noloop); // turns off loop for specific sequence sketch
-//m.appendChild(document.createElement("br"));
-// m.appendChild(tempoSync);

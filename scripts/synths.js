@@ -7,19 +7,25 @@
 //Global array of synths
 var synthLibrary = [
   {
-    name: "Default Synth",
+    name: "Basic Synth",
     type: "Synth",
     settings: {},
     polyphonic: true
   },
   {
-    name: "Default FM Synth",
+    name: "FM Synth",
     type: "FMSynth",
     settings: {},
     polyphonic: true
   },
   {
-    name: "Default Drums",
+    name: "AM Synth",
+    type: "AMSynth",
+    settings: {},
+    polyphonic: true
+  },
+  {
+    name: "Drums",
     type: "Sampler",
     polyphonic: false,
     settings: {
@@ -38,48 +44,9 @@ var synthLibrary = [
     }
   }
 ];
-/*
-// read in the JSON file with synth library meta-data
-async function loadSynthData(file) {
-  const response = await fetch(file);
-  const text = await response.text();
-  try {
-    let obj = JSON.parse(text); // if JSON is valid, make an object
-    makeSynthPlayer(obj); // generate synth interface
-    return obj;
-  }
-  catch (error) {
-    let e = "error - invalid JSON file (synths.json)<br /> copy and paste your JSON to <a href = 'https://jsonlint.com/' target='_blank'>jsonlint.com</a>";
-    document.getElementById("synths").innerHTML = e;
-    console.log(e);
-    return;
-  }
-  //console.log(JSON.stringify(data));
-}
-*/
-function makeSynthPlayer(obj) {
-  console.log("Synth player:");
-  //console.log(JSON.stringify(obj));
 
-    // start with the default synths ...
-  for(let i = 0; i < synthLibrary.length; i ++){
-    makeSynths(synthLibrary[i]); // generate Tone synths for each entry
-  }
-  //now add user items from the JSON file ...
-  if(Array.isArray(obj)){
-    for(let i = 0; i < obj.length; i ++){
-      makeSynths(obj[i]); //parse the objects, instantiate synths
-      synthLibrary.push(obj[i]); // add to the library
-    }
-  }
-  console.log("Synth Library: " + synthLibrary.length + " items")
-
-  // set up the Keyboard GUI
-  let s = document.getElementById("synths");
-  let k = document.createElement('div');
-  k.className = "seqPlayer";
-  s.appendChild(k);
-  let sketch = new p5(keyGUI, k); // invoke p5 and add it to the div
+for(let i = 0; i < synthLibrary.length; i ++){
+  makeSynths(synthLibrary[i]); // generate Tone synths for each entry
 }
 
 function makeSynths(obj){
@@ -103,7 +70,7 @@ function makeSynths(obj){
         console.log("make a new Plucked Synth: " + obj.name);
         obj.synth = new Tone.PolySynth(Tone.PluckSynth).toDestination();
         obj.synth.set(obj.settings);
-        break;  
+        break;
       default :
         console.log("make a new Synth: " + obj.name);
         obj.synth = new Tone.PolySynth(Tone.Synth).toDestination();
@@ -112,9 +79,12 @@ function makeSynths(obj){
   }
 }
 
+/**
+ * synth and drumSampler are the current default instruments
+ */
 // Create a default instrument (sequences and markov)
 const synth = new Tone.PolySynth(Tone.Synth).toDestination();
-// Create a default instrument (sequences and markov)
+// Create a default instrument
 
 /**Define a default polyphonic drum sampler */
 const drumSampler = new Tone.Sampler(

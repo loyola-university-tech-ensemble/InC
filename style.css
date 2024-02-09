@@ -2,7 +2,7 @@
   position: relative;
   margin: 0 auto;
   display: block;
-  width: 350px;
+  width: 380px;
   scroll-snap-align: start;
 }
 
@@ -39,6 +39,15 @@
   background-color: #fde4a9;
   text-align: center;
   color: #5d0024;
+}
+
+.playButton{
+  box-sizing: border-box;
+  width: 40px;
+  height: 40px;
+  border-style: solid;
+  border-color: transparent transparent transparent #5d0024;
+  border-width: 20px 0px 20px 50px;
 }
 
 .synthMenu {
@@ -257,6 +266,7 @@ body{
 }
 
 .play-button{
+  /*deprecated*/
   border: 4px solid;
   height: 40px;
   background-color: #a0144f;
@@ -267,6 +277,7 @@ body{
 }
 
 .metro-button {
+  /*deprecated*/
   border: 4px solid;
   height: 40px;
   background-color: #a0144f;
@@ -290,6 +301,7 @@ body{
 .contents {
   background-color: #eeeeee;
   text-align: center;
+  position: relative;  
 
 }
 

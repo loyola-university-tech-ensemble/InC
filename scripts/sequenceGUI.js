@@ -24,8 +24,8 @@ const seqGUI = p => {
   }
   
   p.setup = function(){
-    let cnv = p.createCanvas(350, 70);
-    playButton = new PlayButton(p, p.width/11, p.height/2);
+    let cnv = p.createCanvas(380, 70);
+    playButton = new PlayButton(p, p.width/11, p.height/1.7);
     playTimer = new PlayTimer(p, p.width/11, p.height/2);
     upOctave = new OctaveButton(p, p.width * 11/12, p.height/4, "up");
     downOctave = new OctaveButton(p, p.width * 11/12, p.height* 3/4, "down");
@@ -69,6 +69,12 @@ const seqGUI = p => {
   p.play = function(){
     let t = p.nextBeat(shifted);
     playing = true;
+    if(Tone.Transport.state == "stopped"){
+      //Tone.Transport.start();
+      let pB = document.getElementById("powerButton");
+      pB.click();
+
+    }
     part = new Tone.Part(((time, note) => {
         // the notes given as the second element in the array
         // will be passed in as the second argument 
@@ -217,7 +223,7 @@ class PlayButton {
     this.p = _p; // P5 object reference
     this.x = _x;
     this.y = _y;
-    this.w = 40;
+    this.w = 60;
     this.col = this.p.color("#4caf50");
     this.playing = false;
   }
@@ -226,15 +232,30 @@ class PlayButton {
     this.p.push();
     this.p.translate(this.x, this.y);
     this.p.scale(.8);
-    this.p.fill(this.col);
-    this.p.stroke(255);
+    this.p.fill("#fde4a9");
+    this.p.stroke("#5d0024");
+    this.p.strokeWeight(4);
     if(this.playing){
       this.p.rectMode(this.p.CENTER);
       this.p.rect(-this.w/4, 0, this.w/4, 40);     
       this.p.rect(this.w/4, 0, this.w/4, 40);    
       this.col = this.p.color("#4caff0");
     } else {
-      this.p.triangle(this.w/2, 0, -this.w/2, -this.w/2, -this.w/2, this.w/2);
+
+      this.p.ellipse(0, 0, this.w);
+      //this.p.triangle(this.w/2, 0, -this.w/2, -this.w/2, -this.w/2, this.w/2);
+      this.p.stroke(0, 150, 0);
+      this.p.strokeJoin(this.p.ROUND);
+      this.p.fill(this.col);
+      this.p.beginShape();
+      this.p.vertex((this.w/2 * 0.7), 0);
+      let x = this.p.cos(this.p.PI - 1) * (this.w/2 * 0.75);
+      let y = this.p.sin(this.p.PI - 1) * (this.w/2 * 0.75);
+      this.p.vertex(x, y);
+      x = this.p.cos(this.p.PI + 1) * this.w/2 * 0.75;
+      y = this.p.sin(this.p.PI + 1) * this.w/2 * 0.75;
+      this.p.vertex(x, y);
+      this.p.endShape(this.p.CLOSE);
       this.col = this.p.color("#4caf50");
     }
     this.p.pop();

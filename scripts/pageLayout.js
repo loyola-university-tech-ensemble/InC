@@ -24,8 +24,14 @@ let backButton = document.getElementById("back-button");
 let forwardButton = document.getElementById("forward-button");
 let sequenceNum = 0;
 
+
 forwardButton.addEventListener('click', scroll);
 backButton.addEventListener('click', scroll);
+
+window.addEventListener("load", (event) => {
+//  console.log("page is fully loaded");
+  backButton.click();
+});
 
 function scroll(e){
   let inc = 0; // increment
