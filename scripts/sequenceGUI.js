@@ -5,22 +5,29 @@ const seqGUI = p => {
   var part; //Tone.js Part reference
   var instrument = new Tone.PolySynth(Tone.Synth).toDestination(); // synth to use for this sequence
   var div = document.getElementById("part3-contents");
-  var part; // reference to the playing part
+  //var part; // reference to the playing part
   var proll; // piano roll rendering of sequence
+  var volSlider; // volume slider for individual sequences
   var looping = false; // loop the sequence
   var augmented = false; // double the duration and note lengths
   var shifted = false; // shift onset later by 1 eighth note
   var playing = false;
   var timerGUI;
+  var velocity = 1;
 
   p.setObj = function(_obj){
     obj = _obj; // receive object from sequences.js script
+    //obj['vel'] = 1;  
     part = new Tone.Part(((time, note) => {
       // the notes given as the second element in the array
       // will be passed in as the second argument 
-      instrument.triggerAttackRelease(Tone.Frequency(note.pitch).transpose(obj.octave * 12), note.dur, time);
+      instrument.triggerAttackRelease(Tone.Frequency(note.pitch).transpose(obj.octave * 12), note.dur, time, .2);
     }), obj.sequence);
     part.loopEnd = obj.duration;
+  }
+
+  p.setSynth = function(_s){
+    instrument = _s;
   }
   
   p.setup = function(){
@@ -29,10 +36,18 @@ const seqGUI = p => {
     playTimer = new PlayTimer(p, p.width/11, p.height/2);
     upOctave = new OctaveButton(p, p.width * 11/12, p.height/4, "up");
     downOctave = new OctaveButton(p, p.width * 11/12, p.height* 3/4, "down");
-    proll = new PianoRoll(p, p.width/6, 3, p.width/2.1, 65);
+    proll = new PianoRoll(p, p.width/6, 3, p.width/2.1, 45);
     loopButton = new LoopButton(p, p.width * 8.4/12, p.height/4);
     augButton = new LoopButton(p, p.width * 9.7/12, p.height/4);
     shift8nButton = new LoopButton(p, p.width * 8.4/12, p.height * 3/4);
+    volSlider = p.createSlider(0, 1, 1, 0.01);
+    volSlider.position(60, 55);
+    volSlider.size(p.width/2.1);
+    volSlider.input(()=>{
+      velocity = volSlider.value();
+    })
+    //volSlider.value(100);
+    //volSlider.step(1); 
   }
   
   p.draw = function(){
@@ -63,7 +78,9 @@ const seqGUI = p => {
     p.text(octave, p.width * 9.7/12, p.height* 3.2/4);
     upOctave.display(obj.octave);
     downOctave.display(obj.octave);
+    //velocity = volSlider.value();
 //    p.text(part.state, 30, p.height/2)
+    // p.text(volSlider.value(), 20, 7);
   }
 
   p.play = function(){
@@ -82,7 +99,7 @@ const seqGUI = p => {
       if(augmented){
         d = Tone.Time(note.dur).toSeconds() * 2;
       }
-      instrument.triggerAttackRelease(Tone.Frequency(note.pitch).transpose(obj.octave * 12), d, time);
+      instrument.triggerAttackRelease(Tone.Frequency(note.pitch).transpose(obj.octave * 12), d, time, velocity);
   
       }), obj.sequence).start(t);
     console.log("start sequence");

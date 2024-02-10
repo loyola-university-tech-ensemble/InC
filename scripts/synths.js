@@ -4,6 +4,16 @@
 */
 //let synthPromise = loadSynthData("synths.json");
 
+// master gain node
+const gainNode = new Tone.Gain(1).toDestination();
+const vSlider = document.getElementById("volume");
+vSlider.addEventListener('input', (e)=>{
+  let vol = e.target.value;
+  console.log(vol)
+  gainNode.gain.rampTo(vol, .01);
+  console.log(gainNode.gain.value);
+});
+
 //Global array of synths
 var synthLibrary = [
   {
@@ -54,26 +64,26 @@ function makeSynths(obj){
     switch (obj.type){
       case "Sampler":
         console.log("make a new Sampler: " + obj.name);
-        obj.synth = new Tone.Sampler(obj.settings).toDestination();
+        obj.synth = new Tone.Sampler(obj.settings).connect(gainNode);
         break;
       case "FMSynth":
         console.log("make a new FM Synth: " + obj.name);
-        obj.synth = new Tone.PolySynth(Tone.FMSynth).toDestination();
+        obj.synth = new Tone.PolySynth(Tone.FMSynth).connect(gainNode);
         obj.synth.set(obj.settings);
         break;
       case "AMSynth":
         console.log("make a new AM Synth: " + obj.name);
-        obj.synth = new Tone.PolySynth(Tone.AMSynth).toDestination();
+        obj.synth = new Tone.PolySynth(Tone.AMSynth).connect(gainNode);
         obj.synth.set(obj.settings);
         break;
       case "PluckSynth":
         console.log("make a new Plucked Synth: " + obj.name);
-        obj.synth = new Tone.PolySynth(Tone.PluckSynth).toDestination();
+        obj.synth = new Tone.PolySynth(Tone.PluckSynth).connect(gainNode);
         obj.synth.set(obj.settings);
         break;
       default :
         console.log("make a new Synth: " + obj.name);
-        obj.synth = new Tone.PolySynth(Tone.Synth).toDestination();
+        obj.synth = new Tone.PolySynth(Tone.Synth).connect(gainNode);
         obj.synth.set(obj.settings);   
     }
   }
@@ -82,11 +92,33 @@ function makeSynths(obj){
 /**
  * synth and drumSampler are the current default instruments
  */
-// Create a default instrument (sequences and markov)
-const synth = new Tone.PolySynth(Tone.Synth).toDestination();
-// Create a default instrument
+// Create a default instrument (sequences)
+const defaultSynth = new Tone.PolySynth(Tone.Synth);
+defaultSynth.connect(gainNode);
 
-/**Define a default polyphonic drum sampler */
+console.log("sequence array: " + sketches.length);
+for(let i = 0; i < sketches.length; i++){
+   sketches[i].setSynth(synthLibrary[0].synth);
+}
+
+//set up synth selector menu
+const synthMenu = document.getElementById("synth-selector");
+for(let i = 0; i < synthLibrary.length; i++){
+  let opt = document.createElement("option");
+  opt.value = i;
+  opt.text = synthLibrary[i].name;
+  synthMenu.add(opt);
+}
+
+synthMenu.addEventListener("change", (e)=>{
+  let s = synthLibrary[e.target.value].synth;
+  console.log("Synth " + e.target.value)
+  for(let i = 0; i < sketches.length; i++){
+    sketches[i].setSynth(s);
+  }
+})
+
+/** Define a default polyphonic drum sampler for click */
 const drumSampler = new Tone.Sampler(
   {
     urls: {
@@ -103,4 +135,3 @@ const drumSampler = new Tone.Sampler(
     },
   }
 ).toDestination();
-

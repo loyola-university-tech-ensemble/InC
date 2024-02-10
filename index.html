@@ -27,6 +27,11 @@
   <div id="start" class='contents' style="display: none;">
     <div id='metronome' class="metronome"></div>
   </div>
+  <div class="synthControl">
+    <!--master volume slider and synth selector-->
+    <input type="range" id="volume" min="0" max="1" value="1" step="0.01" style="width: 150px; height: 20px;">
+    <select style="width: 150px" id="synth-selector" class="synthSequenceMenu"></select>
+  </div>
   <div class = "player">
     <div class="upArrow" id="back-button"><div class="tlabel">back</div></div>
     <!-- <button id="back-button-old" class='menu'>back</button> -->
@@ -51,9 +56,9 @@
   </div>
 
   <script src="scripts/metronomeGUI.js"></script>
-  <script src="scripts/synths.js"></script>
   <script src="scripts/sequenceGUI.js"></script>
   <script src="scripts/sequences.js"></script>
+  <script src="scripts/synths.js"></script>
   <script src="scripts/pageLayout.js"></script>
   <script src="scripts/metronome.js"></script>
 
