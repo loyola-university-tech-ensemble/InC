@@ -8,3 +8,6 @@ New features
 - rhythmic augmentation
 - eighth-note shift
 - octave shift
+- master volume slider
+- synth selector
+- individual pattern velocity slider
