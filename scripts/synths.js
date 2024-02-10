@@ -17,7 +17,7 @@ vSlider.addEventListener('input', (e)=>{
 //Global array of synths
 var synthLibrary = [
   {
-    name: "Basic Synth",
+    name: "Synth 1",
     type: "Synth",
     settings: {},
     polyphonic: true

@@ -1,5 +1,6 @@
-## about this project
-*This is a mockup of the final project for COMP 122*
-The plan is to add to this project at key points throughout the semester. The final result is an interactive performance system that incudes sampled sounds, beat patterns, short sequences, and a music generator. 
+## Terry Riley's "In C" for Web Audio Ensemble
+_Arrangement of Terry Riley's "In C" for laptops or mobile devices using Tone.js By David B Wetzel, Griffin Moe, and George K. Thiruvathukal_
 
-Each of these components will function with the others. Detailed instructions are embedded in each section of this app. Further instructions, resources, and guides are available on Sakai.
+This is an ongoing project of the Loyola University (Chicago) Technology Ensemble (LUTE)
+
+This is a mobile-friendly web app designed to enable group performances of Terry Riley's classic 1964 minimalist composition "In C" by participants with little or no musical or computer science training. The aim is to avoid technical barriers to musical ensemble participation and to encourage listening and in-person interaction.
