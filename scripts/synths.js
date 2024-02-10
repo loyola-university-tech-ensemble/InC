@@ -23,15 +23,88 @@ var synthLibrary = [
     polyphonic: true
   },
   {
-    name: "FM Synth",
+    name: "FM Brass",
     type: "FMSynth",
-    settings: {},
+    settings: {
+      "volume": 0,
+      "detune": 0,
+      "portamento": 0,
+      "harmonicity": 1,
+      "oscillator": {
+        "partialCount": 0,
+        "partials": [],
+        "phase": 0,
+        "type": "sine"
+      },
+      "envelope": {
+        "attack": 0.01,
+        "attackCurve": "linear",
+        "decay": 0.2,
+        "decayCurve": "exponential",
+        "release": 0.6,
+        "releaseCurve": "exponential",
+        "sustain": 0.8
+      },
+      "modulation": {
+        "partialCount": 0,
+        "partials": [],
+        "phase": 0,
+        "type": "sine"
+      },
+      "modulationEnvelope": {
+        "attack": 0.5,
+        "attackCurve": "exponential",
+        "decay": 0.01,
+        "decayCurve": "exponential",
+        "release": 0.5,
+        "releaseCurve": "exponential",
+        "sustain": 1
+      },
+      "modulationIndex": 10
+    },
     polyphonic: true
   },
   {
-    name: "AM Synth",
+    name: "AM Pad 1",
     type: "AMSynth",
-    settings: {},
+    settings: {
+      "volume": 0,
+      "detune": 0,
+      "portamento": 0,
+      "harmonicity": 2.5,
+      "oscillator": {
+        "partialCount": 0,
+        "partials": [],
+        "phase": 0,
+        "type": "fatsawtooth",
+        "count": 3,
+        "spread": 20
+      },
+      "envelope": {
+        "attack": 0.1,
+        "attackCurve": "linear",
+        "decay": 0.2,
+        "decayCurve": "exponential",
+        "release": 0.3,
+        "releaseCurve": "exponential",
+        "sustain": 0.2
+      },
+      "modulation": {
+        "partialCount": 0,
+        "partials": [],
+        "phase": 0,
+        "type": "square"
+      },
+      "modulationEnvelope": {
+        "attack": 0.5,
+        "attackCurve": "linear",
+        "decay": 0.01,
+        "decayCurve": "exponential",
+        "release": 0.5,
+        "releaseCurve": "exponential",
+        "sustain": 1
+      }
+    },
     polyphonic: true
   },
   {
