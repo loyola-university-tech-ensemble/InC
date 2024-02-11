@@ -15,6 +15,7 @@ const seqGUI = p => {
   var timerGUI;
   var velocity = 1;
   var num, playerDiv;
+  var enabled = false;
 
   p.setObj = function(_obj){
     obj = _obj; // receive object from sequences.js script
@@ -25,6 +26,19 @@ const seqGUI = p => {
       instrument.triggerAttackRelease(Tone.Frequency(note.pitch).transpose(obj.octave * 12), note.dur, time, .2);
     }), obj.sequence);
     part.loopEnd = obj.duration;
+
+    timerGUI = new Tone.Part(((time, setTime) =>{
+      let d = setTime.dur
+      if(augmented){
+        d *= 2;
+      }
+      //playTimer.start(d);
+      //proll.start(d);
+      //console.log("playTimer dur: " + setTime.dur);
+    }), [{"time" : 0, "dur" : part.loopEnd}]);
+    
+    timerGUI.loopEnd = part.loopEnd;
+
     if(obj.hasOwnProperty("num")){
       num = obj.num;
       if(document.getElementById("sequence_" + num)){
@@ -32,6 +46,14 @@ const seqGUI = p => {
         console.log("loaded object for " + "sequence_" + num);
       }
     }
+  }
+
+  p.enable = function(){
+    enabled = true;
+  }
+
+  p.disable = function(){
+    enabled = false; 
   }
 
   p.setSynth = function(_s){
@@ -49,8 +71,8 @@ const seqGUI = p => {
     augButton = new LoopButton(p, p.width * 9.7/12, p.height/4);
     shift8nButton = new LoopButton(p, p.width * 8.4/12, p.height * 3/4);
     volSlider = p.createSlider(0, 1, 1, 0.01);
-    volSlider.position(60, 55);
-    volSlider.size(p.width/2.1);
+    volSlider.position(85, 55);
+    volSlider.size(p.width/2.5);
     volSlider.input(()=>{
       velocity = volSlider.value();
     }) 
@@ -84,6 +106,9 @@ const seqGUI = p => {
     p.text(octave, p.width * 9.7/12, p.height* 3.2/4);
     upOctave.display(obj.octave);
     downOctave.display(obj.octave);
+    p.textAlign(p.LEFT, p.CENTER);
+    p.textSize(12);
+    p.text("vel", 65, 58); 
     //velocity = volSlider.value();
 //    p.text(part.state, 30, p.height/2)
     // p.text(volSlider.value(), 20, 7);
@@ -204,7 +229,7 @@ const seqGUI = p => {
   
   p.mousePressed = function(){
   
-    if(p.isVisible()){ // check if player is visible first
+    if(enabled){ // check if player is visible first
       //play button
       if(p.dist(p.mouseX, p.mouseY, playButton.x, playButton.y) < playButton.w/2){
         // console.log("play button");

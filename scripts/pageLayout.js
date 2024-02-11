@@ -24,6 +24,23 @@ let backButton = document.getElementById("back-button");
 let forwardButton = document.getElementById("forward-button");
 let sequenceNum = 0;
 
+sequenceDiv.addEventListener("scrollend", ()=>{
+  console.log("scroll end")
+  let divTop = sequenceDiv.scrollTop;
+  let divBottom = sequenceDiv.scrollTop + sequenceDiv.clientHeight;
+  let seqDiv;
+  for(let i = 0; i < sketches.length; i++){
+    seqDiv = document.getElementById("sequence_" + (i + 1));
+    let top = seqDiv.offsetTop;
+    if(top >= divTop - 5 && top <= divBottom){
+      console.log("sequence " + (i + 1) + " visible");
+      sketches[i].enable();
+    } else {
+      sketches[i].noLoop();
+      sketches[i].disable();
+    }
+  }
+})
 
 forwardButton.addEventListener('click', scroll);
 backButton.addEventListener('click', scroll);
@@ -59,11 +76,7 @@ function scroll(e){
 //let y = sequenceNum * 74.25;
   sequenceDiv.scroll({top: y, left: 0, behavior: "smooth",});
   
-  if(e.currentTarget.id == "back-button"){
-    sketches[(sequenceNum + 4)].noLoop(); // unloop
-  } else if(e.currentTarget.id == "forward-button" && sequenceNum > 0){
-    sketches[sequenceNum - 1].noLoop();
-  } 
+
 } 
 
 /** generate custom QR code leading to the hosted page (wherever it is) */
