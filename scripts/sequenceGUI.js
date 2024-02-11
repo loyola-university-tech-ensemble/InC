@@ -238,7 +238,6 @@ const seqGUI = p => {
           timerGUI.dispose();
         }
         p.play();
-        // console.log("player div is visible: " + p.isVisible());
       }
       // up octave
       if(p.dist(p.mouseX, p.mouseY, upOctave.x, upOctave.y) < upOctave.w/2){

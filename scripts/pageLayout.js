@@ -29,12 +29,15 @@ sequenceDiv.addEventListener("scrollend", ()=>{
   let divTop = sequenceDiv.scrollTop;
   let divBottom = sequenceDiv.scrollTop + sequenceDiv.clientHeight;
   let seqDiv;
+  let s = 0;
   for(let i = 0; i < sketches.length; i++){
     seqDiv = document.getElementById("sequence_" + (i + 1));
     let top = seqDiv.offsetTop;
     if(top >= divTop - 5 && top <= divBottom){
       console.log("sequence " + (i + 1) + " visible");
       sketches[i].enable();
+      sequenceNum = i - s; // locate the current top player for back/fwd buttons
+      s++; // keep track of how many are visible
     } else {
       sketches[i].noLoop();
       sketches[i].disable();
