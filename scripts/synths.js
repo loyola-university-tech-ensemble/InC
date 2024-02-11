@@ -23,6 +23,33 @@ var synthLibrary = [
     polyphonic: true
   },
   {
+    name: "Synth 2",
+    type: "Synth",
+    settings:{
+      "volume": 0,
+      "detune": 0,
+      "portamento": 0.05,
+      "envelope": {
+        "attack": 0.05,
+        "attackCurve": "exponential",
+        "decay": 0.2,
+        "decayCurve": "exponential",
+        "release": 1.5,
+        "releaseCurve": "exponential",
+        "sustain": 0.2
+      },
+      "oscillator": {
+        "partialCount": 0,
+        "partials": [],
+        "phase": 0,
+        "type": "amtriangle",
+        "harmonicity": 0.5,
+        "modulationType": "sine"
+      }
+    },
+    polyphonic: true
+  },
+  {
     name: "FM Brass",
     type: "FMSynth",
     settings: {
