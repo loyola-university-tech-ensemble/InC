@@ -45,9 +45,7 @@ const seqGUI = p => {
     volSlider.size(p.width/2.1);
     volSlider.input(()=>{
       velocity = volSlider.value();
-    })
-    //volSlider.value(100);
-    //volSlider.step(1); 
+    }) 
   }
   
   p.draw = function(){

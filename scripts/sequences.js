@@ -15,12 +15,12 @@ const InC_phrases =
     octave: 0,
     image: "sco1.png",
     sequence: [
-      { time: 0, pitch: "C4", dur: "32n" },
-      { time: "0:0:0.3", pitch: "e4", dur: "4n" },
-      { time: "0:1:0", pitch: "c4", dur: "32n" },
-      { time: "0:1:0.3", pitch: "e4", dur: "4n" },
-      { time: "0:2:0", pitch: "C4", dur: "32n" },
-      { time: "0:2:0.3", pitch: "e4", dur: "4n" }
+      { time: 0, pitch: "C4", dur: "0:0:0.3" },
+      { time: "0:0:0.3", pitch: "e4", dur: "0:0:3.7" },
+      { time: "0:1:0", pitch: "c4", dur: "0:0:0.3" },
+      { time: "0:1:0.3", pitch: "e4", dur: "0:0:3.7" },
+      { time: "0:2:0", pitch: "C4", dur: "0:0:0.3" },
+      { time: "0:2:0.3", pitch: "e4", dur: "0:0:3.7" }
     ]
   },
   { /** #2 */
@@ -28,8 +28,8 @@ const InC_phrases =
     duration: "0:2:0",
     octave: 0,
     image: "sco2.png",
-    sequence: [{ time: 0, pitch: "C4", dur: "32n" },
-    { time: "0:0:0.3", pitch: "e4", dur: "8n" },
+    sequence: [{ time: 0, pitch: "C4", dur: "0:0:0.3" },
+    { time: "0:0:0.3", pitch: "e4", dur: "0:0:1.7" },
     { time: "0:0:2", pitch: "f4", dur: "8n" },
     { time: "0:1:0", pitch: "e4", dur: "4n" }
     ]
