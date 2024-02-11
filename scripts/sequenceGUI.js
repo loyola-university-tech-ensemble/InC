@@ -4,7 +4,7 @@ const seqGUI = p => {
   var playButton, playTimer, loopButton, augButton, shift8nButton, upOctave, downOctave; // buttons
   var part; //Tone.js Part reference
   var instrument = new Tone.PolySynth(Tone.Synth).toDestination(); // synth to use for this sequence
-  var div = document.getElementById("part3-contents");
+  var container = document.getElementById("sequences");
   //var part; // reference to the playing part
   var proll; // piano roll rendering of sequence
   var volSlider; // volume slider for individual sequences
@@ -14,6 +14,7 @@ const seqGUI = p => {
   var playing = false;
   var timerGUI;
   var velocity = 1;
+  var num, playerDiv;
 
   p.setObj = function(_obj){
     obj = _obj; // receive object from sequences.js script
@@ -24,6 +25,13 @@ const seqGUI = p => {
       instrument.triggerAttackRelease(Tone.Frequency(note.pitch).transpose(obj.octave * 12), note.dur, time, .2);
     }), obj.sequence);
     part.loopEnd = obj.duration;
+    if(obj.hasOwnProperty("num")){
+      num = obj.num;
+      if(document.getElementById("sequence_" + num)){
+        playerDiv = document.getElementById("sequence_" + num);
+        console.log("loaded object for " + "sequence_" + num);
+      }
+    }
   }
 
   p.setSynth = function(_s){
@@ -175,61 +183,79 @@ const seqGUI = p => {
     return t;
     
   }
+
+  p.isVisible = function(){
+    let eleTop = playerDiv.offsetTop;
+    let eleBottom = eleTop + playerDiv.clientHeight;
+
+    let containerTop = container.scrollTop;
+    let containerBottom = containerTop + container.clientHeight;
+
+    return (
+      (eleTop >= containerTop && eleBottom <= containerBottom) ||
+      // Some part of the element is visible in the container
+      (eleTop < containerTop && containerTop < eleBottom) ||
+      (eleTop < containerBottom && containerBottom < eleBottom)
+  );
+  }
   
   p.mousePressed = function(){
     //play button
-    if(p.dist(p.mouseX, p.mouseY, playButton.x, playButton.y) < playButton.w/2){
-      console.log("play button");
-      if(part.state == "started"){
-        part.dispose();
-        timerGUI.dispose();
+    if(p.isVisible()){ // check if player is visible first
+      if(p.dist(p.mouseX, p.mouseY, playButton.x, playButton.y) < playButton.w/2){
+        // console.log("play button");
+        if(part.state == "started"){
+          part.dispose();
+          timerGUI.dispose();
+        }
+        p.play();
+        // console.log("player div is visible: " + p.isVisible());
       }
-      p.play();
-    }
-    // up octave
-    if(p.dist(p.mouseX, p.mouseY, upOctave.x, upOctave.y) < upOctave.w/2){
-      p.upOctave();
-    }
-    // down octave
-    if(p.dist(p.mouseX, p.mouseY, downOctave.x, downOctave.y) < downOctave.w/2){
-      p.downOctave();
-    }
-    // loop button
-    if(p.dist(p.mouseX, p.mouseY, loopButton.x, loopButton.y) < loopButton.w/2){
-      if(looping){
-        looping = false;
-        console.log("Looping: " + looping);
-        part.loop = false;
-        timerGUI.loop = false;
-      } else {
-        looping = true;
-        timerGUI.loop = true;
-        console.log("Looping: " + looping);
-        part.loop = true;
+      // up octave
+      if(p.dist(p.mouseX, p.mouseY, upOctave.x, upOctave.y) < upOctave.w/2){
+        p.upOctave();
       }
-    }
-    // rhythmic augmentation button
-    if(p.dist(p.mouseX, p.mouseY, augButton.x, augButton.y) < augButton.w/2){
-      if(augmented){
-        augmented = false;
-//        console.log(augmented);
-      } else {
-        augmented = true;
-        part.dispose(); // restart the part
-        timerGUI.dispose();
-        looping = false;
-//        console.log(augmented);
+      // down octave
+      if(p.dist(p.mouseX, p.mouseY, downOctave.x, downOctave.y) < downOctave.w/2){
+        p.downOctave();
       }
-    }
-    if(p.dist(p.mouseX, p.mouseY, shift8nButton.x, shift8nButton.y) < shift8nButton.w/2){
-      if(shifted){
-        shifted = false;
-        console.log(shifted);
-      } else {
-        shifted = true;
-//        console.log(shifted);
+      // loop button
+      if(p.dist(p.mouseX, p.mouseY, loopButton.x, loopButton.y) < loopButton.w/2){
+        if(looping){
+          looping = false;
+          console.log("Looping: " + looping);
+          part.loop = false;
+          timerGUI.loop = false;
+        } else {
+          looping = true;
+          timerGUI.loop = true;
+          console.log("Looping: " + looping);
+          part.loop = true;
+        }
       }
-    }
+      // rhythmic augmentation button
+      if(p.dist(p.mouseX, p.mouseY, augButton.x, augButton.y) < augButton.w/2){
+        if(augmented){
+          augmented = false;
+  //        console.log(augmented);
+        } else {
+          augmented = true;
+          part.dispose(); // restart the part
+          timerGUI.dispose();
+          looping = false;
+  //        console.log(augmented);
+        }
+      }
+      if(p.dist(p.mouseX, p.mouseY, shift8nButton.x, shift8nButton.y) < shift8nButton.w/2){
+        if(shifted){
+          shifted = false;
+          console.log(shifted);
+        } else {
+          shifted = true;
+  //        console.log(shifted);
+        }
+      }
+  }
   }
 }
 
