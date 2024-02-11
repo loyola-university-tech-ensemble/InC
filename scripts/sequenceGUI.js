@@ -185,6 +185,9 @@ const seqGUI = p => {
   }
 
   p.isVisible = function(){
+    /**based on code tutorial by Phuoc Nguyen, 02 May, 2020, https://phuoc.ng/collection/html-dom/check-if-an-element-is-visible-in-a-scrollable-container/ */
+    /** is the player div visible in the container div? 
+     * Use this to limit tap targets to visible players only*/
     let eleTop = playerDiv.offsetTop;
     let eleBottom = eleTop + playerDiv.clientHeight;
 
@@ -196,12 +199,13 @@ const seqGUI = p => {
       // Some part of the element is visible in the container
       (eleTop < containerTop && containerTop < eleBottom) ||
       (eleTop < containerBottom && containerBottom < eleBottom)
-  );
+    );
   }
   
   p.mousePressed = function(){
-    //play button
+  
     if(p.isVisible()){ // check if player is visible first
+      //play button
       if(p.dist(p.mouseX, p.mouseY, playButton.x, playButton.y) < playButton.w/2){
         // console.log("play button");
         if(part.state == "started"){
@@ -252,7 +256,7 @@ const seqGUI = p => {
           console.log(shifted);
         } else {
           shifted = true;
-  //        console.log(shifted);
+  //      console.log(shifted);
         }
       }
   }
@@ -297,6 +301,10 @@ class PlayButton {
       y = this.p.sin(this.p.PI + 1) * this.w/2 * 0.75;
       this.p.vertex(x, y);
       this.p.endShape(this.p.CLOSE);
+      this.p.textAlign(this.p.CENTER, this.p.CENTER);
+      this.p.noStroke();
+      this.p.fill(0, 150, 0);
+      this.p.text("P", -2, 1);
       this.col = this.p.color("#4caf50");
     }
     this.p.pop();
