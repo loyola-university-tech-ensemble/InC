@@ -65,7 +65,14 @@ backButton.addEventListener('click', scroll);
 
 window.addEventListener("load", (event) => {
 //  console.log("page is fully loaded");
-  backButton.click();
+  if ('onscrollend' in window) {
+    backButton.click(); // most browsers
+  }
+  else {
+    endScrolling(); //scrollend unsupported
+    //Safari MacOS and iOS
+  }
+
 });
 
 function scroll(e){
