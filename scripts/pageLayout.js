@@ -19,13 +19,28 @@ menus.forEach((menuButton) => {
     })
   }
 });
+
 let sequenceDiv = document.getElementById("sequences");
 let backButton = document.getElementById("back-button");
 let forwardButton = document.getElementById("forward-button");
 let sequenceNum = 0;
 
-sequenceDiv.addEventListener("scrollend", ()=>{
-  console.log("scroll end")
+/*sequenceDiv.addEventListener("scrollend", ()=>{
+  // console.log("scroll end")
+  endScrolling();
+})
+*/
+if ('onscrollend' in window) {
+  sequenceDiv.onscrollend = endScrolling;
+}
+else {
+  sequenceDiv.onscroll = event => {
+    clearTimeout(window.scrollEndTimer)
+    window.scrollEndTimer = setTimeout(endScrolling, 100)
+  }
+}
+
+function endScrolling(){
   let divTop = sequenceDiv.scrollTop;
   let divBottom = sequenceDiv.scrollTop + sequenceDiv.clientHeight;
   let seqDiv;
@@ -43,7 +58,7 @@ sequenceDiv.addEventListener("scrollend", ()=>{
       sketches[i].disable();
     }
   }
-})
+}
 
 forwardButton.addEventListener('click', scroll);
 backButton.addEventListener('click', scroll);

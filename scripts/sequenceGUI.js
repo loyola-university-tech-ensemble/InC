@@ -15,7 +15,7 @@ const seqGUI = p => {
   var timerGUI;
   var velocity = 1;
   var num, playerDiv;
-  var enabled = false;
+  var enabled = false; // only play if within view
 
   p.setObj = function(_obj){
     obj = _obj; // receive object from sequences.js script
@@ -208,11 +208,11 @@ const seqGUI = p => {
     return t;
     
   }
-
+/** 
   p.isVisible = function(){
-    /**based on code tutorial by Phuoc Nguyen, 02 May, 2020, https://phuoc.ng/collection/html-dom/check-if-an-element-is-visible-in-a-scrollable-container/ */
-    /** is the player div visible in the container div? 
-     * Use this to limit tap targets to visible players only*/
+    //based on code tutorial by Phuoc Nguyen, 02 May, 2020, https://phuoc.ng/collection/html-dom/check-if-an-element-is-visible-in-a-scrollable-container/ 
+    // is the player div visible in the container div? 
+    // Use this to limit tap targets to visible players only
     let eleTop = playerDiv.offsetTop;
     let eleBottom = eleTop + playerDiv.clientHeight;
 
@@ -226,7 +226,7 @@ const seqGUI = p => {
       (eleTop < containerBottom && containerBottom < eleBottom)
     );
   }
-  
+  */
   p.mousePressed = function(){
   
     if(enabled){ // check if player is visible first

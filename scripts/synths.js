@@ -133,25 +133,6 @@ var synthLibrary = [
       }
     },
     polyphonic: true
-  },
-  {
-    name: "Drums",
-    type: "Sampler",
-    polyphonic: false,
-    settings: {
-      urls: {
-        "A3": "drums/Kick.wav",
-        "A#3": "drums/Kick.wav",
-        "B3": "drums/Snare.wav",
-        "C4": "drums/Claps.wav",
-        "C#4": "drums/Shot1.wav",
-        "D#4": "drums/Shot2.wav",
-        "D4": "drums/WhiteNoise.wav",
-        "E4": "drums/ReverseCymbal.wav",
-        "F4": "drums/HiHat_Closed.wav",
-        "F#4": "drums/HiHat_Open.wav"
-      }
-    }
   }
 ];
 
