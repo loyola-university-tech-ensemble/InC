@@ -6,23 +6,14 @@ const metroGUI = p => {
     var clickButton, tapButton, ostButton;
 
     p.setup = function(){
-        p.createCanvas(350, 120);
+        p.createCanvas(350, 80);
         //slider = new TSlider(p, p.width/2, p.height/2, p.width / 3);
-        selectSynth = p.createSelect();
-        selectSynth.class("synthSequenceMenu");
-        selectSynth.position((p.width / 2) - 75, p.height * 2/3);
-        for(let i =0; i < synthLibrary.length; i++){
-            selectSynth.option(synthLibrary[i].name, i);
-        }
-        //use menu to change ostSynth
-        ostSynth = synthLibrary[0].synth;
-        selectSynth.changed(p.chooseSynth);
         
         //tempo sync
         syncSlider = p.createSlider(-10, 10, 0, 0.5);
         syncSlider.id("tSlider");
-        syncSlider.position(p.width/2-75, p.height/2-30);
-        syncSlider.size(150);
+        syncSlider.position(p.width/2 - 55, 35);
+        syncSlider.size(110);
 
         syncSlider.input(() =>{
             Tone.Transport.bpm.value = bpm * (syncSlider.value() * 0.01 + 1);
@@ -52,15 +43,28 @@ const metroGUI = p => {
 
         ostButton = p.createButton("ostinato");
         ostButton.class("syncButton");
-        ostButton.position(10, 60);
+        ostButton.position(p.width - 90, 2);
         ostButton.mousePressed(()=>{
             startOstinato();
         })
-
+        /*
+        //Synth menu for ostinato
+        selectSynth = p.createSelect();
+        selectSynth.class("synthSequenceMenu");
+        selectSynth.position(p.width -97, p.height /2);
+        selectSynth.size(80);
+        for(let i =0; i < synthLibrary.length; i++){
+            selectSynth.option(synthLibrary[i].name, i);
+        }
+        */
+        //use menu to change ostSynth
+        ostSynth = synthLibrary[0].synth;
+        //selectSynth.changed(p.chooseSynth);
+/*
         tapButton = p.createButton("tap sync");
         tapButton.class("syncButton");
         tapButton.position(265, 30);
-
+*/
     }
 
     p.chooseSynth = function(){
@@ -72,14 +76,15 @@ const metroGUI = p => {
         p.background(200);
         p.textAlign(p.CENTER);
         p.fill(0);
-        p.text("'phase sync' tempo", p.width/2, 10);
+        // p.text("'phase sync' tempo", 90, 60);
+        p.textAlign(p.CENTER);
         let t = Math.trunc(Tone.Transport.bpm.value);
         // let t = Math.trunc(bpm); //bpm defined globally in metronome.js
-        p.text(t + " bpm", p.width/2, p.height / 2+8);
+        p.text(t + " bpm", p.width/2, 20);
         p.textAlign(p.LEFT);
-        p.text("<-slower", p.width/2 - 75, p.height/2);
+        p.text("<-slower", p.width/2 - 55, 60);
         p.textAlign(p.RIGHT);
-        p.text("faster->", p.width/2 + 75, p.height/2);
+        p.text("faster->", p.width/2 + 55, 60);
         //ostSynth = synthLibrary[selectSynth.selected()];
         //tap.display();
         //click.display();
