@@ -11,3 +11,5 @@ New features
 - master volume slider
 - synth selector
 - individual pattern velocity slider
+
+Read the workshop paper for [WAC 2024](https://www.cla.purdue.edu/academic/rueffschool/music/events/conferences-festivals/wac-24/wac-24.html): [Terry Riley's "In C" for Mobile Ensemble Play-Along](about/WAC2024_Terry_Riley_In_C_for_Mobile_Ensemble_Play_Along.pdf)
