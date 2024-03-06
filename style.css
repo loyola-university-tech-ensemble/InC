@@ -1,3 +1,4 @@
+
 .seqPlayer{
   position: relative;
   margin: 0 auto;
@@ -7,7 +8,7 @@
 }
 
 .sequences{
-  max-height: 295px;
+  max-height: 297px;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   position: relative;
@@ -76,10 +77,12 @@ body{
   display: grid;
   justify-content: center;
   padding: auto;
+  width: 95vw;
+  max-width: 800px;
 }
 
 .header {
-  width: 400px;
+  /* width: 400px; */
   border: 0px;
   margin: 1px;
   padding: 0;
