@@ -15,92 +15,47 @@
 </head>
 
 <body>
+<div class="header">   
     <h3><i>In C</i> for Mobile Technology Play-Along</h3>
     <p>Loyola University Technology Ensemble (LUTE)</p>
     <h1>Conductor</h1>
-    <div class="container">
-    <div class="progress">
-        <div class="pattern">1.</div>
-        <div class="pattern">2.</div>
-        <div class="pattern">3.</div>
-        <div class="pattern">4.</div>
-        <div class="pattern">5.</div>
-        <div class="pattern">6.</div>
-        <div class="pattern">7.</div>
-        <div class="pattern">8.</div>
-        <div class="pattern">9.</div>
-        <div class="pattern">10.</div>
-        <div class="pattern">11.</div>
-        <div class="pattern">12.</div>
-        <div class="pattern">13.</div>
-        <div class="pattern">14.</div>
-        <div class="pattern">15.</div>
-        <div class="pattern">16.</div>
-        <div class="pattern">17.</div>
-        <div class="pattern">18.</div>
-        <div class="pattern">19.</div>
-        <div class="pattern">20.</div>
-        <div class="pattern">21.</div>
-        <div class="pattern">22.</div>
-        <div class="pattern">23.</div>
-        <div class="pattern">24.</div>
-        <div class="pattern">25.</div>
-        <div class="pattern">26.</div>
-        <div class="pattern">27.</div>
-        <div class="pattern">28.</div>
-        <div class="pattern">29.</div>
-        <div class="pattern">30.</div>
-        <div class="pattern">31.</div>
-        <div class="pattern">32.</div>
-        <div class="pattern">33.</div>
-        <div class="pattern">34.</div>
-        <div class="pattern">35.</div>
-        <div class="pattern">36.</div>
-        <div class="pattern">37.</div>
-        <div class="pattern">38.</div>
-        <div class="pattern">39.</div>
-        <div class="pattern">40.</div>
-        <div class="pattern">41.</div>
-        <div class="pattern">42.</div>
-        <div class="pattern">43.</div>
-        <div class="pattern">44.</div>
-        <div class="pattern">45.</div>
-        <div class="pattern">46.</div>
-        <div class="pattern">47.</div>
-        <div class="pattern">48.</div>
-        <div class="pattern">49.</div>
-        <div class="pattern">50.</div>
-        <div class="pattern">51.</div>
-        <div class="pattern">52.</div>
-        <div class="pattern">53.</div>
-
-    </div>
-</div>
-    <div class="control">
-        <p>LUTE 2024</p>
+</div> 
+<div class="outer-box">
+    <div class="controls" id="controls">
+        <p class="label">LUTE 2024</p>
         <div class="controllerDiv">
             <button id="transport" class="controlButton">Start Transport</button>
         </div>
         <div class="controllerDiv">
-            <center>
+          
             <button id="beat" class="controlButton">Start Beats</button>            
-            </br>
             <input id="beatVolume" type="range" size="120px" value="1" min="0" max="1" step="0.05">
-            </center>
+          
         </div>
 
         <div class="controllerDiv"> 
-            <center>    
+        
             <button id="ostinato" class="controlButton">Start Ostinato</button>
-            </br>
             <input id="ostVolume" type="range" size="120px" value="1" min="0" max="1" step="0.05">
-            </center>   
+        
         </div>
 
     </div>
+    <div class="sequencer">
+    <div class="patterns" id="patterns"></div>
+    <div class="patternVoice">Pattern voice</div>
+    </div>
+</div>
+
+    <div class="progress" id = "progress">
+
+    </div>
+
     <div class = "outer">
         <div id="beats"></div>
     </div>
-<script src="conductor.js"></script>
+    <script src="scripts/sequenceGUI.js"></script>
+    <script src="scripts/sequences.js"></script>
+    <script src="conductor.js"></script>
 </body>
 </html>

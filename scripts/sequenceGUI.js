@@ -81,13 +81,12 @@ const seqGUI = p => {
     augButton = new LoopButton(p, p.width * 9.7/12, p.height/4);
     shift8nButton = new LoopButton(p, p.width * 8.4/12, p.height * 3/4);
     volSlider = p.createSlider(0, 1, 1, 0.01);
-    volSlider.position(p.width/4.5, 55);
+    volSlider.position(p.width/4.5, p.height * 3.2/4);
     volSlider.size(p.width/2.5);
     volSlider.input(()=>{
       velocity = volSlider.value();
     }) 
   }
-
   
   p.draw = function(){
     p.background(200);

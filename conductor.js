@@ -5,6 +5,62 @@ var ostinato = "off"; // ostinato state
 console.log("default tempo: " + bpm + " bpm");
 Tone.Transport.bpm.value = bpm;
 
+var sketches = [];
+let sequenceDiv = document.getElementById("patterns");
+makeSeqConductor(InC_phrases);
+
+function makeSeqConductor(obj){
+
+  if(Array.isArray(obj)){
+    for(let i = 0; i < obj.length; i++){
+      //console.log(obj[i].name);
+
+      let d = document.createElement('div');
+      d.className = "pattern";
+      d.id = "sequence_" + (i + 1);
+      //console.log(d.id);
+      sequenceDiv.appendChild(d);
+      let sketch = new p5(seqGUI, d); // invoke p5 and add it to the div
+      sketch.setObj(obj[i]); // hand a reference to the sequence to the sketch
+      sketches.push(sketch); // add to a global array for later
+    }
+
+  }  
+}
+
+
+
+if ('onscrollend' in window) {
+  sequenceDiv.onscrollend = endScrolling;
+}
+else {
+  sequenceDiv.onscroll = event => {
+    clearTimeout(window.scrollEndTimer)
+    window.scrollEndTimer = setTimeout(endScrolling, 100)
+  }
+}
+endScrolling();
+
+function endScrolling(){
+  let divTop = sequenceDiv.scrollTop;
+  let divBottom = sequenceDiv.scrollTop + sequenceDiv.clientHeight;
+  let seqDiv;
+  let s = 0;
+  for(let i = 0; i < sketches.length; i++){
+    seqDiv = document.getElementById("sequence_" + (i + 1));
+    let top = seqDiv.offsetTop;
+    if(top >= divTop - 5 && top <= divBottom){
+      console.log("sequence " + (i + 1) + " visible");
+      sketches[i].enable();
+      sequenceNum = i - s; // locate the current top player for back/fwd buttons
+      s++; // keep track of how many are visible
+    } else {
+      sketches[i].noLoop();
+      sketches[i].disable();
+    }
+  }
+}
+
 //const ostSynth = new Tone.PolySynth(Tone.Synth).toDestination();
 const ostLoop = new Tone.Part(function (time, value){
   ostPiano.triggerAttackRelease(value.note, "16n", time, value.vel);
@@ -156,6 +212,8 @@ const drumSampler = new Tone.Sampler(
   ).connect(drumsGain);
 
 const drumVolSlider = document.getElementById("beatVolume");
+drumVolSlider.className = "drumVolSlider";
+drumVolSlider.style = "padding: 20px;";
 drumVolSlider.addEventListener('input', (e) => {
   drumsGain.gain.rampTo(e.target.value, 0.05);
 });
@@ -171,6 +229,7 @@ const ostPiano = new Tone.Sampler({
 ostPiano.connect(reverb);
 
 const ostVolSlider = document.getElementById("ostVolume");
+ostVolSlider.style = "padding: 20px;";
 ostVolSlider.addEventListener('input', (e) => {
   ostGain.gain.rampTo(e.target.value, 0.05);
 });
@@ -214,7 +273,7 @@ const beatsGUI = p =>{
         for(let i = 0; i < beats[j].length; i++){
           beats[j][i] = new BeatBox(p, i * 50 + 20, 40, drumsArray[j].pitch);
           beats[j][i].y = beats[j][i].w + (j * beats[j][i].w * 1.1);
-          console.log(`beat ${i} for instrument ${beats[j][i].note}`);
+          //console.log(`beat ${i} for instrument ${beats[j][i].note}`);
         }
 
       }
@@ -284,13 +343,13 @@ const beatsGUI = p =>{
           labels[i].on = false;
           for(let j = 0; j < beats[i].length; j++){
             beats[i][j].mute = false;
-            console.log(beats[i][j].mute);
+            //console.log(beats[i][j].mute);
           }
         } else {
           labels[i].on = true;          
           for(let j = 0; j < beats[i].length; j++){
             beats[i][j].mute = true;
-            console.log(beats[i][j].mute);
+            //console.log(beats[i][j].mute);
           }
         }
       }
@@ -347,7 +406,7 @@ class BeatBox {
     this.p.rect(this.x, this.y, this.w, this.w, 5);
     this.p.textAlign(this.p.CENTER, this.p.CENTER);
     this.p.fill(0);
-    this.p.text(this.note + " " + i, this.x, this.y);
+    //this.p.text(this.note + " " + i, this.x, this.y);
   }
 
 }

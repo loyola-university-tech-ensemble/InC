@@ -1,18 +1,17 @@
 
-.seqPlayer{
-  position: relative;
-  margin: 0 auto;
-  display: block;
-  width: 380px;
-  scroll-snap-align: start;
-}
-
 .sequences{
   max-height: 297px;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   position: relative;
   scroll-snap-type: y mandatory;
+}
+.seqPlayer{
+  position: relative;
+  margin: 0 auto;
+  display: block;
+  width: 380px;
+  scroll-snap-align: start;
 }
 
 .sync {
