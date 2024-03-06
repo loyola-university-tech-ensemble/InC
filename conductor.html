@@ -43,7 +43,10 @@
     </div>
     <div class="sequencer">
     <div class="patterns" id="patterns"></div>
-    <div class="patternVoice">Pattern voice</div>
+    <div class="patternVoice">
+        <select style="width: 150px" id="synth-selector" class="synthSequenceMenu"></select>
+        <input type="range" id="volume" min="0" max="1" value="1" step="0.01" style="width: 150px; height: 20px;">
+        </div>
     </div>
 </div>
 
@@ -56,6 +59,7 @@
     </div>
     <script src="scripts/sequenceGUI.js"></script>
     <script src="scripts/sequences.js"></script>
+    <script src="scripts/synths.js"></script>
     <script src="conductor.js"></script>
 </body>
 </html>

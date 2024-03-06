@@ -5,6 +5,10 @@ var ostinato = "off"; // ostinato state
 console.log("default tempo: " + bpm + " bpm");
 Tone.Transport.bpm.value = bpm;
 
+
+/**
+ * load all the In C Patterns into the 'patterns' div
+ */
 var sketches = [];
 let sequenceDiv = document.getElementById("patterns");
 makeSeqConductor(InC_phrases);
@@ -28,7 +32,11 @@ function makeSeqConductor(obj){
   }  
 }
 
+/**
+ * Control vertical scrolling of sequence players
+ */
 
+endScrolling(); // call endScrolling() when the page loads to enable the visible players
 
 if ('onscrollend' in window) {
   sequenceDiv.onscrollend = endScrolling;
@@ -39,7 +47,7 @@ else {
     window.scrollEndTimer = setTimeout(endScrolling, 100)
   }
 }
-endScrolling();
+
 
 function endScrolling(){
   let divTop = sequenceDiv.scrollTop;
@@ -63,7 +71,7 @@ function endScrolling(){
 
 //const ostSynth = new Tone.PolySynth(Tone.Synth).toDestination();
 const ostLoop = new Tone.Part(function (time, value){
-  ostPiano.triggerAttackRelease(value.note, "16n", time, value.vel);
+  ostSynth.triggerAttackRelease(value.note, "16n", time, value.vel);
 }, [{"time" : 0, "note" : ["C5"], "vel": 1}, 
     {"time" : "0:0:2", "note" : ["C5"], "vel": 0.5}, 
     {"time" : "0:1:0", "note" : ["C5"], "vel": 1},
@@ -125,20 +133,24 @@ function startTransport(){
       default:
         Tone.Transport.start();
     }
+    // make sure synths are set correctly to default synth
+    let menu = document.getElementById('synth-selector');
+    menu.value = 0; // set the menu item
+    menu.dispatchEvent(new Event('change')); // force the menu change event
   }
 
 const clickLoop = new Tone.Loop((time) => {
 	// triggered every quarter note.
 	//console.log(time);
 //  clickSampler.triggerAttackRelease("F4", "8n", time);
-  drumSampler.triggerAttackRelease("F4", "8n", time);
+  beatsSampler.triggerAttackRelease("F4", "8n", time);
   //metroClick.triggerAttackRelease(500, "128n", time);
 }, "4n");
 
 const dbClickLoop = new Tone.Loop((time) => {
 	// triggered every measure.
 	//console.log(time);
-  drumSampler.triggerAttackRelease("A3", "8n", time);
+  beatsSampler.triggerAttackRelease("A3", "8n", time);
   //metroClick.triggerAttackRelease(500, "128n", time);
 }, "1m");
 
@@ -194,7 +206,7 @@ function getNextMeasure(){
 
 /** Define a default polyphonic drum sampler for click */
 const drumsGain = new Tone.Gain(1).toDestination();
-const drumSampler = new Tone.Sampler(
+const beatsSampler = new Tone.Sampler(
     {
       urls: {
         "A3": "drums/Kick.wav",
@@ -219,14 +231,14 @@ drumVolSlider.addEventListener('input', (e) => {
 });
 
 const ostGain = new Tone.Gain(1).toDestination();
-const reverb = new Tone.Reverb(0.5).connect(ostGain);
+const ostreverb = new Tone.Reverb(0.5).connect(ostGain);
 /** define a piano sampler for the ostinato */
-const ostPiano = new Tone.Sampler({
+const ostSynth = new Tone.Sampler({
   urls: {
     "C5" : "drums/piano-note-upright-dry_85bpm_A_major.wav"
   }
 })
-ostPiano.connect(reverb);
+ostSynth.connect(ostreverb);
 
 const ostVolSlider = document.getElementById("ostVolume");
 ostVolSlider.style = "padding: 20px;";
@@ -321,7 +333,7 @@ const beatsGUI = p =>{
       // each row
       beats[j][i].on = true;
       if(beats[j][i].plays && beats[j][i].mute == false){
-        drumSampler.triggerAttack(beats[j][i].note, time);
+        beatsSampler.triggerAttack(beats[j][i].note, time);
       }
 
       if (i == 0) {

@@ -76,10 +76,24 @@ body {
 }
 .patternVoice {
     position: relative;
+    display: flex;
     border-style: solid;
     margin: auto;
-    height: 20px;
+    height: 50px;
+    width: 380px;
+    margin: auto;
+    background-color: #cfcfcf;
 }
+
+.synthSequenceMenu {
+  height: 30px;
+  width: 150px;
+  background-color: #fde4a9;
+  text-align: center;
+  color: #5d0024;
+  margin: 10px;
+}
+
 h1, h3 {
     padding: 5px;
     margin: 0;
