@@ -1,6 +1,6 @@
 body {
     width: 95vw;
-    max-width: 800px;
+    max-width: 1200px;
     display: grid;
     justify-content: center;
     padding: auto;
@@ -14,7 +14,7 @@ body {
     margin: 0;
 }
 .outer-box {
-    border-style: solid;
+/*    border-style: solid; */
     display: inline-flex;
     margin: auto;
     height: 350px;
@@ -27,7 +27,7 @@ body {
 .controls {
     border-style: solid;
     width: 50%;
-    max-width: 600px;
+    max-width: 610px;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
     position: relative;
@@ -36,7 +36,7 @@ body {
 
 .controllerDiv {
     background: rgb(255, 243, 192);
-    color: crimson;
+  /*  color: crimson; */
     height: 80px;
     display: flex;
     margin: auto;
@@ -48,15 +48,17 @@ body {
     background-color: rgb(179, 0, 86);
     color: beige;
     width: 50%;
+    max-width: 200px;
     height: 50px;
     border-radius: 10px;
 }
 
 .sequencer {
   border-style: solid;
-  border-color: #a0144f;
+/*  border-color: #a0144f; */
   position: relative;
   display: block;
+  width: 384px;
 }
 
 .patterns {
@@ -66,19 +68,20 @@ body {
     position: relative;
     display: block;
     scroll-snap-type: y mandatory;
+  margin: auto;
 }
 
 .pattern {
     position: relative;
-    margin: 0 auto;
+    margin: 1 auto;
     height: 74px;
     scroll-snap-align: start;
-
+    margin-left: 2px;
 }
 .patternVoice {
     position: relative;
     display: flex;
-    border-style: solid;
+  /*  border-style: solid; */
     margin: auto;
     height: 50px;
     width: 380px;
@@ -136,6 +139,8 @@ h1, h3 {
     overflow-x: scroll;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
+    border-style: solid;
+    max-width: 1520px;
     
 }
 
