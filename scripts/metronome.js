@@ -3,7 +3,7 @@
 * Also creates a transport start/stop button
 */
 
-var bpm = 138; // default tempo
+var bpm = 128; // default tempo
 
 console.log("default tempo: " + bpm + " bpm");
 
@@ -12,11 +12,15 @@ Tone.Transport.bpm.value = bpm;
 //const ostSynth = new Tone.PolySynth(Tone.Synth).toDestination();
 var ostSynth = synthLibrary[1].synth; // pull from synth library
 const ostLoop = new Tone.Part(function (time, value){
-  ostSynth.triggerAttackRelease(value.note, "16n", time);
-}, [{"time" : 0, "note" : ["C3", "C5"]}, 
-    {"time" : "0:1:0", "note" : ["C5"]},
-    {"time" : "0:2:0", "note" : ["C5"]},
-    {"time" : "0:3:0", "note" : ["C5"]}
+  ostPiano.triggerAttackRelease(value.note, "16n", time, value.vel);
+}, [{"time" : 0, "note" : ["C5"], "vel": 1}, 
+    {"time" : "0:0:2", "note" : ["C5"], "vel": 0.5}, 
+    {"time" : "0:1:0", "note" : ["C5"], "vel": 1},
+    {"time" : "0:1:2", "note" : ["C5"], "vel": 0.5}, 
+    {"time" : "0:2:0", "note" : ["C5"], "vel": 1},
+    {"time" : "0:2:2", "note" : ["C5"], "vel": 0.5}, 
+    {"time" : "0:3:0", "note" : ["C5"], "vel": 1},
+    {"time" : "0:3:2", "note" : ["C5"], "vel": 0.5}
    ]);
 ostLoop.loop = true;
 

@@ -9,9 +9,9 @@ const gainNode = new Tone.Gain(1).toDestination();
 const vSlider = document.getElementById("volume");
 vSlider.addEventListener('input', (e)=>{
   let vol = e.target.value;
-  console.log(vol)
+  //console.log(vol)
   gainNode.gain.rampTo(vol, .01);
-  console.log(gainNode.gain.value);
+  console.log("gain node value: " + gainNode.gain.value);
 });
 
 //Global array of synths
@@ -177,7 +177,9 @@ function makeSynths(obj){
 const defaultSynth = new Tone.PolySynth(Tone.Synth);
 defaultSynth.connect(gainNode);
 
-console.log("sequence array: " + sketches.length);
+//console.log("sequence array: " + sketches.length);
+
+// set all sequence players to the default synth
 for(let i = 0; i < sketches.length; i++){
    sketches[i].setSynth(synthLibrary[0].synth);
 }
@@ -191,13 +193,14 @@ for(let i = 0; i < synthLibrary.length; i++){
   synthMenu.add(opt);
 }
 
+// event listener for synth menu
 synthMenu.addEventListener("change", (e)=>{
   let s = synthLibrary[e.target.value].synth;
   console.log("Synth " + e.target.value)
   for(let i = 0; i < sketches.length; i++){
     sketches[i].setSynth(s);
   }
-})
+});
 
 /** Define a default polyphonic drum sampler for click */
 const drumSampler = new Tone.Sampler(
@@ -216,3 +219,13 @@ const drumSampler = new Tone.Sampler(
     },
   }
 ).toDestination();
+
+const reverb = new Tone.Reverb(0.5).toDestination();
+/** define a piano sampler for the ostinato */
+const ostPiano = new Tone.Sampler({
+  urls: {
+    "C5" : "drums/piano-note-upright-dry_85bpm_A_major.wav"
+  }
+})
+ostPiano.connect(reverb);
+

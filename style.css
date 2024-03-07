@@ -1,17 +1,17 @@
+
+.sequences{
+  max-height: 297px;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+  scroll-snap-type: y mandatory;
+}
 .seqPlayer{
   position: relative;
   margin: 0 auto;
   display: block;
   width: 380px;
   scroll-snap-align: start;
-}
-
-.sequences{
-  max-height: 295px;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
-  position: relative;
-  scroll-snap-type: y mandatory;
 }
 
 .sync {
@@ -76,10 +76,12 @@ body{
   display: grid;
   justify-content: center;
   padding: auto;
+  width: 95vw;
+  max-width: 800px;
 }
 
 .header {
-  width: 400px;
+  /* width: 400px; */
   border: 0px;
   margin: 1px;
   padding: 0;

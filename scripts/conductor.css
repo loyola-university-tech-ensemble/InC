@@ -1,0 +1,224 @@
+body {
+    width: 95vw;
+    max-width: 1200px;
+    display: grid;
+    justify-content: center;
+    padding: auto;
+    flex-wrap: wrap;
+    margin: auto;
+}
+.label {
+    background-color: rgb(155, 3, 99);
+    color: beige;
+    padding: 10px;
+    margin: 0;
+}
+.outer-box {
+/*    border-style: solid; */
+    display: inline-flex;
+    margin: auto;
+    height: 350px;
+    width: 95vw;
+    max-width: 1200;
+    position: relative;
+    overflow-x: scroll;
+}
+
+.controls {
+    border-style: solid;
+    width: 50%;
+    max-width: 610px;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+    scroll-snap-type: y mandatory;
+}
+
+.controllerDiv {
+    background: rgb(255, 243, 192);
+  /*  color: crimson; */
+    height: 80px;
+    display: flex;
+    margin: auto;
+    padding: 12px;
+    position: relative;
+}
+
+.controlButton {
+    background-color: rgb(179, 0, 86);
+    color: beige;
+    width: 50%;
+    max-width: 200px;
+    height: 50px;
+    border-radius: 10px;
+}
+
+.sequencer {
+  border-style: solid;
+/*  border-color: #a0144f; */
+  position: relative;
+  display: block;
+  width: 384px;
+}
+
+.patterns {
+    height: 297px;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+    display: block;
+    scroll-snap-type: y mandatory;
+  margin: auto;
+}
+
+.pattern {
+    position: relative;
+    margin: 1 auto;
+    height: 74px;
+    scroll-snap-align: start;
+    margin-left: 2px;
+}
+.patternVoice {
+    position: relative;
+    display: flex;
+  /*  border-style: solid; */
+    margin: auto;
+    height: 50px;
+    width: 380px;
+    margin: auto;
+    background-color: #cfcfcf;
+}
+
+.synthSequenceMenu {
+  height: 30px;
+  width: 150px;
+  background-color: #fde4a9;
+  text-align: center;
+  color: #5d0024;
+  margin: 10px;
+}
+
+.progress {
+  width: 40%;
+  max-width: 520px;
+  border-style: solid;
+  background-color: #cfcfcf;
+}
+.nowPlaying {
+  display: flex;
+  margin: auto;
+  align-items: center;
+  height: 200px;
+}
+
+.NPnumberBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32pt;
+  border:green solid 3px;
+  width: 25%;
+  max-width: 100px;
+  height: 100px;
+  background-color: darkseagreen;
+  margin: auto;
+}
+
+h1, h3 {
+    padding: 5px;
+    margin: 0;
+}
+.container {
+    width: 95vw;
+}
+
+
+.outer {
+    white-space: nowrap;
+    position: relative;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    border-style: solid;
+    max-width: 1520px;
+    
+}
+
+/********** Range Input Styles **********/
+/*Range Reset*/
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+    width: 10rem;
+    height: 0px;
+    padding: 2px;
+  }
+  
+  /* Removes default focus */
+  input[type="range"]:focus {
+    outline: none;
+  }
+  
+  /***** Chrome, Safari, Opera and Edge Chromium styles *****/
+  /* slider track */
+  input[type="range"]::-webkit-slider-runnable-track {
+    background-color: #ffffff;
+    border-radius: 0.25rem;
+    height: 0.25rem;
+  }
+  
+  /* slider thumb */
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    /* Override default look */
+    appearance: none;
+    margin-top: -0.5rem;
+    /* Centers thumb on the track */
+  
+    /*custom styles*/
+    background-color: #a0144f;
+    height: 1.1rem;
+    width: 1rem;
+    border-radius: 10px;
+  
+  }
+  
+  input[type="range"]:focus::-webkit-slider-thumb {
+    border: 1px solid #a8a8a8;
+    outline: 1px solid #292d35;
+    outline-offset: 0.02rem;
+  }
+  
+  /******** Firefox styles ********/
+  /* slider track */
+  input[type="range"]::-moz-range-track {
+    background-color: #ffffff;
+    border-radius: 0.25rem;
+    height: 0.25rem;
+    margin-top: -0.5rem;
+    padding: 0px;
+  }
+  
+  /* slider thumb */
+  input[type="range"]::-moz-range-thumb {
+    border: none;
+    /*Removes extra border that FF applies*/
+    border-radius: 10;
+    margin-top: -.5rem;
+    /*Removes default border-radius that FF applies*/
+  
+    /*custom styles*/
+    background-color: #a0144f;
+    height: 1.1rem;
+    width: 1rem;
+    padding: 0px;
+  }
+  
+  input[type="range"]:focus::-moz-range-thumb {
+    border: 1px solid #a8a8a8;
+    outline: 1px solid #292d35;
+    outline-offset: 0.02rem;
+  }
+  

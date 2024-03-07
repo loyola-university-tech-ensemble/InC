@@ -61,7 +61,17 @@ const seqGUI = p => {
   }
   
   p.setup = function(){
-    let cnv = p.createCanvas(380, 70);
+    let cnv;
+    if(p.windowWidth < 380){
+      if(p.windowWidth < 320) {
+        p.createCanvas(320, 70); //narrowest screen size out there
+      } else{
+        p.createCanvas(p.windowWidth, 70);
+      }
+    } else {
+      cnv = p.createCanvas(380, 70);
+    }
+
     playButton = new PlayButton(p, p.width/11, p.height/1.7);
     playTimer = new PlayTimer(p, p.width/11, p.height/2);
     upOctave = new OctaveButton(p, p.width * 11/12, p.height/4, "up");
@@ -71,7 +81,7 @@ const seqGUI = p => {
     augButton = new LoopButton(p, p.width * 9.7/12, p.height/4);
     shift8nButton = new LoopButton(p, p.width * 8.4/12, p.height * 3/4);
     volSlider = p.createSlider(0, 1, 1, 0.01);
-    volSlider.position(85, 55);
+    volSlider.position(p.width/4.5, p.height * 3.2/4);
     volSlider.size(p.width/2.5);
     volSlider.input(()=>{
       velocity = volSlider.value();
@@ -108,7 +118,7 @@ const seqGUI = p => {
     downOctave.display(obj.octave);
     p.textAlign(p.LEFT, p.CENTER);
     p.textSize(12);
-    p.text("vel", 65, 58); 
+    p.text("vel", p.width/6, 58); 
     //velocity = volSlider.value();
 //    p.text(part.state, 30, p.height/2)
     // p.text(volSlider.value(), 20, 7);

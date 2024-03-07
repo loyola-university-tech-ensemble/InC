@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
+  <title>In C for mobile ensemble play-along</title>
+  <link href="scripts/conductor.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"> </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.32/Tone.js"> </script>
+  <!-- zero-md for dynamically loading markdown files to HTML -->
+  <script src="https://cdn.jsdelivr.net/npm/@webcomponents/webcomponentsjs@2/webcomponents-loader.min.js"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/gh/zerodevx/zero-md@1/src/zero-md.min.js"></script>
+</head>
+
+<body>
+<div class="header">   
+    <h3><i>In C</i> for Mobile Technology Play-Along</h3>
+    <p>Loyola University Technology Ensemble (LUTE)</p>
+    <h1>Conductor</h1>
+</div> 
+<div class="outer-box">
+    <div class="controls" id="controls">
+        <p class="label">LUTE 2024</p>
+        <div class="controllerDiv">
+            <button id="transport" class="controlButton">Start Transport</button>
+        </div>
+        <div class="controllerDiv">
+            <button id="beatButton" class="controlButton">Start Beats</button>            
+            <input id="beatVolume" type="range" size="120px" value="1" min="0" max="1" step="0.05">
+            <select id="beatMenu" style="width: 150px" class="synthSequenceMenu"></select>
+        </div>
+
+        <div class="controllerDiv"> 
+            <button id="ostinato" class="controlButton">Start Ostinato</button>
+            <input id="ostVolume" type="range" size="120px" value="1" min="0" max="1" step="0.05">
+            <select id="ostMenu" style="width: 150px" class="synthSequenceMenu"></select>
+        </div>
+
+    </div>
+    <div class="sequencer">
+    <div class="patterns" id="patterns"></div>
+    <div class="patternVoice">
+        <select style="width: 150px" id="synth-selector" class="synthSequenceMenu"></select>
+        <input type="range" id="volume" name = "volume" min="0" max="1" value="1" step="0.01" style="width: 150px; height: 20px; padding: 10px">
+        </div>
+    </div>
+    <div class="progress" id="progress">
+        <div><center><h1>Now Playing</h1></center></div>
+        <div class="nowPlaying">
+            <div class="NPnumberBox" id="NPnumberBox_0">1.</div>
+            <div class="NPnumberBox" id="NPnumberBox_1">2.</div>
+            <div class="NPnumberBox" id="NPnumberBox_2">3.</div>
+            <div class="NPnumberBox" id="NPnumberBox_3">4.</div>
+        </div>
+    </div>
+</div>
+
+
+
+    <div class = "outer">
+        <div id="beats"></div>
+    </div>
+    <script src="scripts/ostinato-patterns.js"></script>
+    <script src="scripts/beat-patterns.js"></script>
+    <script src="scripts/drum-machine.js"></script>
+    <script src="scripts/sequenceGUI.js"></script>
+    <script src="scripts/sequences.js"></script>
+    <script src="scripts/synths.js"></script>
+    <script src="scripts/conductor.js"></script>
+</body>
+</html>
