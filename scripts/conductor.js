@@ -53,15 +53,19 @@ function endScrolling(){
   let divTop = sequenceDiv.scrollTop;
   let divBottom = sequenceDiv.scrollTop + sequenceDiv.clientHeight;
   let seqDiv;
-  let s = 0;
+  //let s = 0;
+  let npb = 0; //now playing button
   for(let i = 0; i < sketches.length; i++){
     seqDiv = document.getElementById("sequence_" + (i + 1));
     let top = seqDiv.offsetTop;
-    if(top >= divTop - 5 && top <= divBottom){
+    if(top >= divTop - 5 && top <= divBottom - 5){
       console.log("sequence " + (i + 1) + " visible");
       sketches[i].enable();
-      sequenceNum = i - s; // locate the current top player for back/fwd buttons
-      s++; // keep track of how many are visible
+      sequenceNum = i - npb; // locate the current top player for back/fwd buttons
+      let box = document.getElementById("NPnumberBox_" + npb);
+      box.innerText = (i + 1) + ".";
+      // console.log("npb: " + npb);
+      npb++; // keep track of how many are visible
     } else {
       sketches[i].noLoop();
       sketches[i].disable();

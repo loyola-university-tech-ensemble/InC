@@ -46,3 +46,20 @@ const beatPatterns = [
     }
 
 ]
+
+const drumFills = [
+    {
+        "name" : "Phil Collins",
+        "pattern" : [
+            {"time" : 0, "pitch" : "C3", "dur": "8n"}
+        ]
+    },
+    {
+        "name" : "Number 7",
+        "pattern" : [
+            {"time" : "0:1:2", "pitch" : "C3", "dur": "16n"},
+            {"time" : "0:1:3", "pitch" : "C3", "dur": "16n"},
+            {"time" : "0:2:0", "pitch" : "C3", "dur": "8n"}
+        ]
+     }
+]

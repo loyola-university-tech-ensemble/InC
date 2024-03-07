@@ -21,11 +21,13 @@ body {
     width: 95vw;
     max-width: 1200;
     position: relative;
+    overflow-x: scroll;
 }
 
 .controls {
     border-style: solid;
     width: 50%;
+    max-width: 600px;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
     position: relative;
@@ -72,7 +74,6 @@ body {
     height: 74px;
     scroll-snap-align: start;
 
-
 }
 .patternVoice {
     position: relative;
@@ -92,6 +93,32 @@ body {
   text-align: center;
   color: #5d0024;
   margin: 10px;
+}
+
+.progress {
+  width: 40%;
+  max-width: 520px;
+  border-style: solid;
+  background-color: #cfcfcf;
+}
+.nowPlaying {
+  display: flex;
+  margin: auto;
+  align-items: center;
+  height: 200px;
+}
+
+.NPnumberBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32pt;
+  border:green solid 3px;
+  width: 25%;
+  max-width: 100px;
+  height: 100px;
+  background-color: darkseagreen;
+  margin: auto;
 }
 
 h1, h3 {
