@@ -105,7 +105,7 @@ function startOstinato(){
   switch(ostinato){
     case "off":
       ostinato = "on";
-      console.log("ostinato " + ostinato);
+      //console.log("ostinato " + ostinato);
       ostButton.style.background = '#e1a820'; 
       ostButton.style.color = '#5d0024';
       ostButton.innerText="Stop Ostinato";
@@ -113,11 +113,10 @@ function startOstinato(){
         startTransport();
       }
       ostLoop.start(getNextbeat()); // start on next quarter note
-      //dbClickLoop.start(getNextMeasure());
       break;
     case "on":
       ostinato = "off";
-      console.log("ostinato " + ostinato);
+      //console.log("ostinato " + ostinato);
       ostButton.style.background = '#a0144f';
       ostButton.style.color = '#febc17';
       ostButton.innerText="Start Ostinato";
@@ -276,9 +275,36 @@ const drumsArray = [
 
 const beatsDiv = document.getElementById("beats");
 const BeatSequencer = new p5(beatsGUI, beatsDiv); // beatsGUI in scripts/drum-machine.js
-document.getElementById("beat").addEventListener('click', () => {
-  BeatSequencer.startLoop();
-});
+const beatButton = document.getElementById("beatButton");
+beatButton.addEventListener('click', startBeats);
+
+function startBeats(){
+//  console.log("startBeats")
+  switch(metro){
+    case "off":
+      metro = "on";
+      //console.log("beats " + metro);
+      beatButton.style.background = '#e1a820'; 
+      beatButton.style.color = '#5d0024';
+      beatButton.innerText="Stop Beats";
+      if(Tone.Transport.state == "stopped"){
+        startTransport();
+      }
+      BeatSequencer.startLoop(); // toggle handled by GUI
+      break;
+    case "on":
+      metro = "off";
+      //console.log("beats " + metro);
+      beatButton.style.background = '#a0144f';
+      beatButton.style.color = '#febc17';
+      beatButton.innerText="Start Beats";
+      BeatSequencer.startLoop(); // toggle handled by GUI
+      break;
+    default:
+      Tone.Transport.start();
+  }
+}
+
 
 // beat pattern selector for pre-composed 2-bar beat patterns
 const beatMenu = document.getElementById('beatMenu');
