@@ -70,18 +70,31 @@ function endScrolling(){
 }
 
 //const ostSynth = new Tone.PolySynth(Tone.Synth).toDestination();
-const ostLoop = new Tone.Part(function (time, value){
+var ostLoop = new Tone.Part(function (time, value){
   ostSynth.triggerAttackRelease(value.note, "16n", time, value.vel);
-}, [{"time" : 0, "note" : ["C5"], "vel": 1}, 
-    {"time" : "0:0:2", "note" : ["C5"], "vel": 0.5}, 
-    {"time" : "0:1:0", "note" : ["C5"], "vel": 1},
-    {"time" : "0:1:2", "note" : ["C5"], "vel": 0.5}, 
-    {"time" : "0:2:0", "note" : ["C5"], "vel": 1},
-    {"time" : "0:2:2", "note" : ["C5"], "vel": 0.5}, 
-    {"time" : "0:3:0", "note" : ["C5"], "vel": 1},
-    {"time" : "0:3:2", "note" : ["C5"], "vel": 0.5}
-   ]);
+}, ostPatterns[0].pattern);
 ostLoop.loop = true;
+
+const ostMenu = document.getElementById('ostMenu');
+for(let i = 0; i < ostPatterns.length; i++){
+  let opt = document.createElement("option");
+  opt.value = i;
+  opt.text = ostPatterns[i].name;
+  ostMenu.add(opt);
+}
+
+ostMenu.addEventListener('change', (e) => {
+  let i = e.target.value
+  console.log(`Change ostinato to number ${i}`);
+  ostLoop.dispose();
+  ostLoop = new Tone.Part(function (time, value){
+    ostSynth.triggerAttackRelease(value.note, "16n", time, value.vel);
+  }, ostPatterns[i].pattern);
+  ostLoop.loop = true;
+  if(ostinato){
+    ostLoop.start(getNextbeat()); // start on next quarter note
+  }
+});
 
 const ostButton = document.getElementById("ostinato");
 ostButton.addEventListener('click', startOstinato);
@@ -95,10 +108,10 @@ function startOstinato(){
       console.log("ostinato " + ostinato);
       ostButton.style.background = '#e1a820'; 
       ostButton.style.color = '#5d0024';
+      ostButton.innerText="Stop Ostinato";
       if(Tone.Transport.state == "stopped"){
         startTransport();
       }
-
       ostLoop.start(getNextbeat()); // start on next quarter note
       //dbClickLoop.start(getNextMeasure());
       break;
@@ -107,6 +120,7 @@ function startOstinato(){
       console.log("ostinato " + ostinato);
       ostButton.style.background = '#a0144f';
       ostButton.style.color = '#febc17';
+      ostButton.innerText="Start Ostinato";
       ostLoop.stop();
       break;
     default:
@@ -259,202 +273,43 @@ const drumsArray = [
   {"pitch" : "F#4", "name" : "open hi-hat"}
 ];
 
-const beatsGUI = p =>{
-
-  let beats = [];
-  let labels = [];
-  let playing = false;
-  let i = 0; //index of the beat pattern
-  const drumLoop = new Tone.Loop((time) => {
-    // triggered every sixteenth note.
-    //console.log(time);
-    p.playBeat(i, time);
-    i++;
-    i %= 32;
-  }, "16n")
-  drumLoop.stop();
-
-  p.setup = function() {
-
-      p.createCanvas(1600 *.95, 500);  
-      
-      // for each instrument in the drumset, create an array
-      for(let j = 0; j < drumsArray.length; j++){
-        beats.push(new Array(32));
-        labels.push(new StartButton(p, 5, 20 + j * 40 * 1.1, drumsArray[j].name))
-        for(let i = 0; i < beats[j].length; i++){
-          beats[j][i] = new BeatBox(p, i * 50 + 20, 40, drumsArray[j].pitch);
-          beats[j][i].y = beats[j][i].w + (j * beats[j][i].w * 1.1);
-          //console.log(`beat ${i} for instrument ${beats[j][i].note}`);
-        }
-
-      }
-  }
-
-  p.startLoop = function(){
-    if(playing){
-      drumLoop.stop();
-      playing = false;
-      i = 0;
-    } else{
-      drumLoop.start(getNextMeasure());
-      playing = true;
-      i = 0;
-    }
-
-  }
-    
-  p.draw = function() {
-    let beatMargin = 90;
-    let beatWidth = 1425;
-    let margin = beatMargin;
-    p.background(200);
-
-    for(let j = 0; j < drumsArray.length; j++){
-      labels[j].display()
-      margin = beatMargin;
-      for(let i = 0; i < beats[j].length; i++){
-        if(i % 4 === 0){
-          margin += 10;
-        }        
-        beats[j][i].x = margin + beats[j][i].w / 2 + i * beats[j][i].w * 1.05;
-        beats[j][i].display(i);      
-      }
-    }
-
-    p.rectMode(p.CORNER);
-    p.noFill();
-    p.strokeWeight(3)
-    p.rect(beatMargin, 10, beatWidth, 460, 10)
-  }
-
-  p.playBeat = function(i, time){
-    for(let j = 0; j < beats.length; j++){
-      // each row
-      beats[j][i].on = true;
-      if(beats[j][i].plays && beats[j][i].mute == false){
-        beatsSampler.triggerAttack(beats[j][i].note, time);
-      }
-
-      if (i == 0) {
-        beats[j][beats[j].length - 1].on = false;
-      } else {
-        beats[j][i - 1].on = false;
-      }
-    }
-  }
-
-  p.mousePressed = function(){
-    let x = p.mouseX;
-    let y = p.mouseY;
-
-    for(let i = 0; i < labels.length; i++){
-      //if (p.dist(x, y, labels[i].x, labels[i].y) < 20){
-      if (x > labels[i].x && x < labels[i].x + labels[i].w && y > labels[i].y && y < labels[i].y + labels[i].w/2){
-        if(labels[i].on == true){
-          labels[i].on = false;
-          for(let j = 0; j < beats[i].length; j++){
-            beats[i][j].mute = false;
-            //console.log(beats[i][j].mute);
-          }
-        } else {
-          labels[i].on = true;          
-          for(let j = 0; j < beats[i].length; j++){
-            beats[i][j].mute = true;
-            //console.log(beats[i][j].mute);
-          }
-        }
-      }
-    }
-
-    for(let j = 0; j < beats.length; j++){
-      for(let i = 0; i < beats[j].length; i++){
-        if(p.dist(x, y, beats[j][i].x, beats[j][i].y) < beats[j][i].w/2){
-          if(beats[j][i].plays == true){
-            beats[j][i].plays = false;
-          } else {
-            beats[j][i].plays = true;          
-          }
-        }
-      }
-    }
-  }
-
-
-}
-
-class BeatBox {
-  constructor(_p, _x, _y, _note){
-      this.p = _p;
-      this.x = _x;
-      this.y = _y;
-      this.w = 40;
-      this.note = _note;
-      this.mute = false;
-      this.plays = false; // does this cell play a note?
-      this.on = false; // is it currently playing?
-//        console.log(`BeatBox constructor for note ${this.note}`);
-  }
-
-  display(i){
-    this.p.strokeWeight(1);
-
-    this.p.rectMode(this.p.CENTER);
-    if (this.on) {
-      if (this.plays){
-        this.p.fill(this.p.color("#4caf50")); // active player, green
-      }
-      else{
-        this.p.fill(150) // non-player, active (gray)
-      }
-    } else { // not on
-      if (this.plays){
-        this.p.fill(this.p.color("#ba64e8")); // non-active player, purple
-      }
-      else {
-        this.p.fill(255); //non-player, not active (white)
-      }
-    }
-    this.p.rect(this.x, this.y, this.w, this.w, 5);
-    this.p.textAlign(this.p.CENTER, this.p.CENTER);
-    this.p.fill(0);
-    //this.p.text(this.note + " " + i, this.x, this.y);
-  }
-
-}
-
-class StartButton {
-  constructor(_p, _x, _y, _label){
-    this.p = _p
-    this.x = _x;
-    this.y = _y;
-    this.w = 80;
-    this.label = _label;
-    this.on = false;
-  }
-  display(){
-    this.p.push();
-    this.p.strokeWeight(1);
-    this.p.rectMode(this.p.CORNER);
-    if(this.on){
-      this.p.fill(150);
-    } else {
-      this.p.fill(255);
-    }
-    this.p.rect(this.x, this.y, this.w, this.w/2, 5);
-    this.p.textAlign(this.p.LEFT, this.p.TOP);
-    this.p.fill(0);
-    this.p.text(this.label, this.x + 5, this.y + 5, 70, 40);
-    this.p.pop();
-
-  }
-
-
-}
-
 
 const beatsDiv = document.getElementById("beats");
-const BeatSequencer = new p5(beatsGUI, beatsDiv);
+const BeatSequencer = new p5(beatsGUI, beatsDiv); // beatsGUI in scripts/drum-machine.js
 document.getElementById("beat").addEventListener('click', () => {
   BeatSequencer.startLoop();
 });
+
+// beat pattern selector for pre-composed 2-bar beat patterns
+const beatMenu = document.getElementById('beatMenu');
+// 'beatPatterns' array stored in scripts/beat-patterns.js
+setBeatMenu(beatMenu, beatPatterns, BeatSequencer);
+
+// function takes a menu element (m), a beatPatterns array (a), and a beatsGUI instance (s)
+function setBeatMenu(m, a, s){
+  let opt = document.createElement('option');
+  opt.value = -1;
+  opt.text = "select a beat pattern";
+  m.add(opt);
+  for(let i = 0; i < a.length; i++){
+    opt = document.createElement('option');
+    opt.value = i;
+    opt.text = a[i].name;
+    m.add(opt);
+  } // populate the beat patterns menu
+  opt = document.createElement('option');
+  opt.value = -1;
+  opt.text = "Clear all beat patterns";
+  m.add(opt);
+
+  m.addEventListener('change', (e) => {
+    let i = e.target.value;
+    if(i >= 0){
+      //console.log(a[i].pattern);
+      s.changePattern(a[i].pattern);
+    } else {
+      //console.log("clear beat patterns")
+      s.clearPattern();
+    }
+  });
+}

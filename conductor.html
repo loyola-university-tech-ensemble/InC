@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width">
   <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
   <title>In C for mobile ensemble play-along</title>
-  <link href="conductor.css" rel="stylesheet" type="text/css" />
+  <link href="scripts/conductor.css" rel="stylesheet" type="text/css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"> </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.32/Tone.js"> </script>
   <!-- zero-md for dynamically loading markdown files to HTML -->
@@ -27,17 +27,15 @@
             <button id="transport" class="controlButton">Start Transport</button>
         </div>
         <div class="controllerDiv">
-          
             <button id="beat" class="controlButton">Start Beats</button>            
             <input id="beatVolume" type="range" size="120px" value="1" min="0" max="1" step="0.05">
-          
+            <select id="beatMenu" style="width: 150px" class="synthSequenceMenu"></select>
         </div>
 
         <div class="controllerDiv"> 
-        
             <button id="ostinato" class="controlButton">Start Ostinato</button>
             <input id="ostVolume" type="range" size="120px" value="1" min="0" max="1" step="0.05">
-        
+            <select id="ostMenu" style="width: 150px" class="synthSequenceMenu"></select>
         </div>
 
     </div>
@@ -57,9 +55,12 @@
     <div class = "outer">
         <div id="beats"></div>
     </div>
+    <script src="scripts/ostinato-patterns.js"></script>
+    <script src="scripts/beat-patterns.js"></script>
+    <script src="scripts/drum-machine.js"></script>
     <script src="scripts/sequenceGUI.js"></script>
     <script src="scripts/sequences.js"></script>
     <script src="scripts/synths.js"></script>
-    <script src="conductor.js"></script>
+    <script src="scripts/conductor.js"></script>
 </body>
 </html>
