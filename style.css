@@ -1,29 +1,69 @@
 
-.sequences{
-  max-height: 297px;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
-  position: relative;
-  scroll-snap-type: y mandatory;
-}
-.seqPlayer{
-  position: relative;
-  margin: 0 auto;
-  display: block;
-  width: 380px;
-  scroll-snap-align: start;
+body{
+  display: grid;
+  justify-content: center;
+  width: 95vw;
+  max-width: 800px;
 }
 
-.sync {
-  width: 350px;
+.header {
+  border: 0px;
+  margin: 1px;
+  padding: 0;
+  text-align: left;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  background-color: #fbfbfb;
+
+}
+
+/* Project title at top */
+.header-element {
+  display: inline-block;
+  border: 0px;
+  margin-left: 10px;
+  padding: 0;
+  vertical-align: middle;
+}
+
+/* generic button type for controlling drop-down content
+* eventListener defined in pageLayout.js
+ */
+.menu {
+  border: 4px solid;
+  background-color: #a0144f;
+  border-radius: 8px;
+  width: 100%;
+  height: 40px;
+  padding: 5px 5px;
+  color: #febc17;
+}
+
+/* generic container for drop-down content*/
+.contents {
+  background-color: #eeeeee;
+  text-align: center;
+  position: relative; 
+  width: 98%;
+  margin: auto; 
+}
+
+/* contains the sync menu*/
+.metronome {
+  width: 95%;
   position: relative;
+  display: grid;
   margin: auto;
 }
-.metronome {
-  align-content: center;
+
+/* contains the P5 instance for metronome sync*/
+.sync {
+  width: 320px;
+  margin: auto;
   position: relative;
-  align-items: center;
 }
+/* click and ostinato buttons */
 .syncButton {
   height: 40px;
   width: 80px;
@@ -33,6 +73,20 @@
   border-radius: 10px;
   border-width: 5px;
 }
+
+/* contains volume slider and synth select menu */
+.synthControl{
+  background: #c4c3c3;
+  position: relative;
+  display:flex;
+  justify-content: space-evenly;
+  margin: auto;
+  height: 35px;
+  width: 96%;
+  max-width: 380px;
+}
+
+/* drop-down menu for synth selection */
 .synthSequenceMenu {
   height: 30px;
   width: 150px;
@@ -41,16 +95,46 @@
   color: #5d0024;
 }
 
-.synthControl{
-  background: #c4c3c3;
-  position: relative;
-  display:flex;
-  justify-content: space-evenly;
+
+/* contains back/forward buttons plus sequence player */
+.player {
+  display: grid;
+  justify-content: center;
+  background: #eaeaea;
+  width: 96%;
   margin: auto;
-  width: 370px;
-  padding: 5px;
 }
 
+/* Back and Forward buttons */
+.navigator {
+  border: none;
+  width: 99%;
+  background-color: #7e0131;
+  border-radius: 5px;
+  height: 35px;
+  color: #febc17;
+  margin: 2px auto;
+}
+/* Container for individual sequence players */
+.sequences{
+  max-height: 296px;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+  scroll-snap-type: y mandatory;
+}
+/* individual P5 instance sequence players. Defined in sequenceGUI.js*/
+.seqPlayer{
+  position: relative;
+  margin: 0 auto;
+  display: block;
+  width: 100%;
+  max-width: 380px;
+  scroll-snap-align: start;
+}
+
+/* is this used? */
+/*
 .playButton{
   box-sizing: border-box;
   width: 40px;
@@ -70,39 +154,6 @@
 .octButton {
   height: 40px;
   width: 50px;
-}
-
-body{
-  display: grid;
-  justify-content: center;
-  padding: auto;
-  width: 95vw;
-  max-width: 800px;
-}
-
-.header {
-  /* width: 400px; */
-  border: 0px;
-  margin: 1px;
-  padding: 0;
-  text-align: left;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  background-color: #fbfbfb;
-
-}
-.header-element {
-  display: inline-block;
-  border: 0px;
-  margin-left: 10px;
-  padding: 0;
-  vertical-align: middle;
-}
-
-.player {
-  display: grid;
-  justify-content: center;
 }
 
 .upArrow {
@@ -126,8 +177,8 @@ body{
   height: 0;  
   border-left: 190px solid #a0144f; 
   border-right: 190px solid #a0144f;
-  color: #febc17;
   border-top: 35px solid #5d0024; 
+  color: #febc17;
   margin-bottom: 5px;
   position: sticky;
   top: 0px;
@@ -158,6 +209,7 @@ body{
   text-align: center;
   align-items: center;
 }
+*/
 
 .pbutton {
   /* power button effect courtesy of https://csswolf.com/power-button-effect-in-css/*/
@@ -199,12 +251,92 @@ body{
   border-color: lightgreen;
 }
 
-
 .box {
   height: 40px;
   width: 40px;
 }
 
+
+/********** Range Input Styles **********/
+/*Range Reset*/
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  width: 15rem;
+  height: 0px;
+  padding: 2px;
+}
+
+/* Removes default focus */
+input[type="range"]:focus {
+  outline: none;
+}
+
+/***** Chrome, Safari, Opera and Edge Chromium styles *****/
+/* slider track */
+input[type="range"]::-webkit-slider-runnable-track {
+  background-color: #ffffff;
+  border-radius: 0.25rem;
+  height: 0.25rem;
+}
+
+/* slider thumb */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  /* Override default look */
+  appearance: none;
+  margin-top: -0.5rem;
+  /* Centers thumb on the track */
+
+  /*custom styles*/
+  background-color: #a0144f;
+  height: 1.1rem;
+  width: 1rem;
+  border-radius: 10px;
+}
+
+input[type="range"]:focus::-webkit-slider-thumb {
+  border: 1px solid #a8a8a8;
+  outline: 1px solid #292d35;
+  outline-offset: 0.02rem;
+}
+
+/******** Firefox styles ********/
+/* slider track */
+input[type="range"]::-moz-range-track {
+  background-color: #ffffff;
+  border-radius: 0.25rem;
+  height: 0.25rem;
+  margin-top: -0.5rem;
+  padding: 0px;
+}
+
+/* slider thumb */
+input[type="range"]::-moz-range-thumb {
+  border: none;
+  /*Removes extra border that FF applies*/
+  border-radius: 10;
+  margin-top: -.5rem;
+  /*Removes default border-radius that FF applies*/
+
+  /*custom styles*/
+  background-color: #a0144f;
+  height: 1.1rem;
+  width: 1rem;
+  padding: 0px;
+}
+
+input[type="range"]:focus::-moz-range-thumb {
+  border: 1px solid #a8a8a8;
+  outline: 1px solid #292d35;
+  outline-offset: 0.02rem;
+}
+
+
+/* Also deprecated */
+/*
 .loopDiv {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -269,7 +401,8 @@ body{
     stroke-dashoffset: 110;
   }
 }
-
+*/
+/*
 .dropdown {
   height: 40px;
   width: 100%;
@@ -278,7 +411,7 @@ body{
 }
 
 .play-button{
-  /*deprecated*/
+
   border: 4px solid;
   height: 40px;
   background-color: #a0144f;
@@ -289,7 +422,6 @@ body{
 }
 
 .metro-button {
-  /*deprecated*/
   border: 4px solid;
   height: 40px;
   background-color: #a0144f;
@@ -308,23 +440,6 @@ body{
   text-align: center;
   position: relative;
 
-}
-
-.contents {
-  background-color: #eeeeee;
-  text-align: center;
-  position: relative;  
-
-}
-
-.menu {
-  border: 4px solid;
-  background-color: #a0144f;
-  border-radius: 8px;
-  width: 100%;
-  height: 40px;
-  padding: 5px 5px;
-  color: #febc17;
 }
 
 .form-control {
@@ -348,81 +463,4 @@ body{
   width: 40%;
   height: 50px;
 }
-
-/********** Range Input Styles **********/
-/*Range Reset*/
-input[type="range"] {
-  -webkit-appearance: none;
-  appearance: none;
-  background: transparent;
-  cursor: pointer;
-  width: 15rem;
-  height: 0px;
-  padding: 2px;
-}
-
-/* Removes default focus */
-input[type="range"]:focus {
-  outline: none;
-}
-
-/***** Chrome, Safari, Opera and Edge Chromium styles *****/
-/* slider track */
-input[type="range"]::-webkit-slider-runnable-track {
-  background-color: #ffffff;
-  border-radius: 0.25rem;
-  height: 0.25rem;
-}
-
-/* slider thumb */
-input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  /* Override default look */
-  appearance: none;
-  margin-top: -0.5rem;
-  /* Centers thumb on the track */
-
-  /*custom styles*/
-  background-color: #a0144f;
-  height: 1.1rem;
-  width: 1rem;
-  border-radius: 10px;
-
-}
-
-input[type="range"]:focus::-webkit-slider-thumb {
-  border: 1px solid #a8a8a8;
-  outline: 1px solid #292d35;
-  outline-offset: 0.02rem;
-}
-
-/******** Firefox styles ********/
-/* slider track */
-input[type="range"]::-moz-range-track {
-  background-color: #ffffff;
-  border-radius: 0.25rem;
-  height: 0.25rem;
-  margin-top: -0.5rem;
-  padding: 0px;
-}
-
-/* slider thumb */
-input[type="range"]::-moz-range-thumb {
-  border: none;
-  /*Removes extra border that FF applies*/
-  border-radius: 10;
-  margin-top: -.5rem;
-  /*Removes default border-radius that FF applies*/
-
-  /*custom styles*/
-  background-color: #a0144f;
-  height: 1.1rem;
-  width: 1rem;
-  padding: 0px;
-}
-
-input[type="range"]:focus::-moz-range-thumb {
-  border: 1px solid #a8a8a8;
-  outline: 1px solid #292d35;
-  outline-offset: 0.02rem;
-}
+*/

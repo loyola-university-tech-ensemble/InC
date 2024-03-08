@@ -61,7 +61,8 @@ const seqGUI = p => {
   }
   
   p.setup = function(){
-    let cnv;
+    let cnv = p.createCanvas(320, 70);
+    /*
     if(p.windowWidth < 380){
       if(p.windowWidth < 320) {
         p.createCanvas(320, 70); //narrowest screen size out there
@@ -71,7 +72,7 @@ const seqGUI = p => {
     } else {
       cnv = p.createCanvas(380, 70);
     }
-
+*/
     playButton = new PlayButton(p, p.width/11, p.height/1.7);
     playTimer = new PlayTimer(p, p.width/11, p.height/2);
     upOctave = new OctaveButton(p, p.width * 11/12, p.height/4, "up");
@@ -302,7 +303,7 @@ class PlayButton {
     this.p = _p; // P5 object reference
     this.x = _x;
     this.y = _y;
-    this.w = 60;
+    this.w = 50;
     this.col = this.p.color("#4caf50");
     this.playing = false;
   }
