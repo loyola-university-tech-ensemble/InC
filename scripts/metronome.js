@@ -3,7 +3,7 @@
 * Also creates a transport start/stop button
 */
 
-var bpm = 128; // default tempo
+var bpm = 126; // default tempo
 
 console.log("default tempo: " + bpm + " bpm");
 
