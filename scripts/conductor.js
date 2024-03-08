@@ -1,4 +1,4 @@
-var bpm = 128; // default tempo
+var bpm = 126; // default tempo
 var metro = "off"; // metronome state
 var ostinato = "off"; // ostinato state
 

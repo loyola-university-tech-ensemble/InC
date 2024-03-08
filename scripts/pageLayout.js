@@ -48,7 +48,7 @@ function endScrolling(){
   for(let i = 0; i < sketches.length; i++){
     seqDiv = document.getElementById("sequence_" + (i + 1));
     let top = seqDiv.offsetTop;
-    if(top >= divTop - 5 && top <= divBottom){
+    if(top >= divTop - 5 && top <= divBottom - 5){
       console.log("sequence " + (i + 1) + " visible");
       sketches[i].enable();
       sequenceNum = i - s; // locate the current top player for back/fwd buttons

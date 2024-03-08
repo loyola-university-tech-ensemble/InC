@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
   <title>In C for mobile ensemble play-along</title>
   <link href="style.css" rel="stylesheet" type="text/css" />
@@ -33,10 +33,12 @@
     <select style="width: 150px" id="synth-selector" class="synthSequenceMenu"></select>
   </div>
   <div class = "player">
-    <div class="upArrow" id="back-button"><div class="tlabel">back</div></div>
+  <!--  <div class="upArrow" id="back-button"><div class="tlabel">back</div></div> -->
+    <button class="navigator" id="back-button">Back</button>
     <!-- <button id="back-button-old" class='menu'>back</button> -->
     <div id="sequences" class="sequences"></div>
-    <div class="downArrow" id="forward-button"><div class="blabel">forward</div></div>
+    <!-- <div class="downArrow" id="forward-button"><div class="blabel">forward</div></div> -->
+    <button class="navigator" id="forward-button">Forward</button>
     <!-- <button id="forward-button" class='menu'>forward</button> -->
   </div>
   <button id="qrButton" class='menu'>View QR for mobile device</button>

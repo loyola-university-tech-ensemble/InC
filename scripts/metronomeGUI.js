@@ -6,7 +6,7 @@ const metroGUI = p => {
     var clickButton, tapButton, ostButton;
 
     p.setup = function(){
-        p.createCanvas(350, 80);
+        p.createCanvas(320, 80);
         //slider = new TSlider(p, p.width/2, p.height/2, p.width / 3);
         
         //tempo sync
