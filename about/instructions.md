@@ -13,7 +13,7 @@ This is a **"play-along"** version of Terry Rileys "In C" (1964) designed for in
 
 Open the **"Sync"** menu. Someone in the group should designate their device as the **"conductor"** and tap **"Click"** or **"Ostinato"** to hear a steady pulse (this will start the Transport). 
 
-The designated conductor may also use the [conductor](../conductor.html) app. This app needs more screen space because of the drum pattern sequencer, so we do not recommend using this on mobile phones (800px width or better recommended). Besides the ostinato (with volume control), the conductor also can be used to project directions for the group.
+The designated conductor may also use the [conductor](/InC/conductor.html) app. This app needs more screen space because of the drum pattern sequencer, so we do not recommend using this on mobile phones (800px width or better recommended). Besides the ostinato (with volume control), the conductor also can be used to project directions for the group.
 
 When another **"player"** starts their Click (or plays a pattern), the pulse will likely be out of sync with the "conductor" pulse. To **synchronize**  metronomes between players and the conductor, pull the **"phase sync"** slider to the right or left. This will temporarily run the player's metronome up to 10% faster or slower. 
 

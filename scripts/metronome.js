@@ -7,6 +7,9 @@ var bpm = 126; // default tempo
 var metro = "off"; // metronome state
 var ostinato = "off"; // ostinato state
 
+Tone.context.lookAhead = 0.5;
+console.log("lookAhead: " + Tone.context.lookAhead);
+
 console.log("default tempo: " + bpm + " bpm");
 
 Tone.Transport.bpm.value = bpm;
@@ -54,7 +57,7 @@ function startTransport(){
   switch (Tone.Transport.state) {
     case "stopped":
       Tone.Transport.bpm.value = bpm;
-      Tone.Transport.start();
+      Tone.Transport.start("+0.1");
       console.log("transport " + Tone.Transport.state);
       transport.style.background = '#4caf50';
       transport.innerHTML = "Stop";
@@ -68,7 +71,7 @@ function startTransport(){
       pB.classList.remove('active');
       break;
     default:
-      Tone  .Transport.start();
+      Tone.Transport.start("+0.1");
   }
 }
 
