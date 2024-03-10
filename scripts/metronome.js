@@ -10,6 +10,7 @@ var ostinato = "off"; // ostinato state
 Tone.setContext(new Tone.Context({ latencyHint : "playback" }));
 Tone.context.lookAhead = 0.5;
 console.log("lookAhead: " + Tone.context.lookAhead);
+console.log("latencyHint: " + Tone.context.latencyHint);
 
 console.log("default tempo: " + bpm + " bpm");
 
