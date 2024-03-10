@@ -2,6 +2,8 @@ var bpm = 126; // default tempo
 var metro = "off"; // metronome state
 var ostinato = "off"; // ostinato state
 
+Tone.context.lookAhead = 0.5;
+
 console.log("default tempo: " + bpm + " bpm");
 Tone.Transport.bpm.value = bpm;
 
