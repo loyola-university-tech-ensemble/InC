@@ -16,6 +16,7 @@ const seqGUI = p => {
   var velocity = 1;
   var num, playerDiv;
   var enabled = false; // only play if within view
+  var LButton, AButton, SButton, OctupButton, OctdnButton, PButton;
 
   p.setObj = function(_obj){
     obj = _obj; // receive object from sequences.js script
@@ -62,31 +63,157 @@ const seqGUI = p => {
   
   p.setup = function(){
     let cnv = p.createCanvas(320, 70);
-    /*
-    if(p.windowWidth < 380){
-      if(p.windowWidth < 320) {
-        p.createCanvas(320, 70); //narrowest screen size out there
-      } else{
-        p.createCanvas(p.windowWidth, 70);
-      }
-    } else {
-      cnv = p.createCanvas(380, 70);
-    }
-*/
     playButton = new PlayButton(p, p.width/11, p.height/1.7);
     playTimer = new PlayTimer(p, p.width/11, p.height/2);
-    upOctave = new OctaveButton(p, p.width * 11/12, p.height/4, "up");
-    downOctave = new OctaveButton(p, p.width * 11/12, p.height* 3/4, "down");
     proll = new PianoRoll(p, p.width/6, 3, p.width/2.1, 45);
-    loopButton = new LoopButton(p, p.width * 8.4/12, p.height/4);
-    augButton = new LoopButton(p, p.width * 9.7/12, p.height/4);
-    shift8nButton = new LoopButton(p, p.width * 8.4/12, p.height * 3/4);
+    // upOctave = new OctaveButton(p, p.width * 11/12, p.height/4, "up");
+    // downOctave = new OctaveButton(p, p.width * 11/12, p.height* 3/4, "down");
+    // loopButton = new LoopButton(p, p.width * 8.4/12, p.height/4);
+    // augButton = new LoopButton(p, p.width * 9.7/12, p.height/4);
+    // shift8nButton = new LoopButton(p, p.width * 8.4/12, p.height * 3/4);
     volSlider = p.createSlider(0, 1, 1, 0.01);
-    volSlider.position(p.width/4.5, p.height * 3.2/4);
-    volSlider.size(p.width/2.5);
+    volSlider.position(85, 55);
+    volSlider.size(p.width/3); 
     volSlider.input(()=>{
       velocity = volSlider.value();
-    }) 
+    });
+    p.controlButtons(); 
+  }
+
+  p.controlButtons = function(){
+    //invisible play button over playButton
+    let PBstyle = "width: 45px; height: 45px; border-radius: 40px;";
+    PBstyle += "background-color: Transparent; border-style: none;"
+    PButton = p.createButton("");
+    PButton.position(7, 20);
+    PButton.style(PBstyle);
+    PButton.mousePressed(() => {
+      if(enabled){
+        console.log("play button");
+        if(part.state == "started"){
+          part.dispose();
+          timerGUI.dispose();
+        }
+        p.play();
+      }
+    });
+    let style = "width: 35px; height:35px; "
+    style += "border-width: 4px; border-radius: 10px; border-color: #000000;"
+    style += "padding: 2px;";
+    style += "background-color: #cfcfcf;"
+    LButton = p.createButton("L");
+    LButton.position(208, 0);
+    LButton.style(style);
+    LButton.mousePressed(() => {
+      if(enabled){
+       if(looping){
+          looping = false;
+          LButton.style("background-color: #cfcfcf;");
+          console.log("Looping: " + looping);
+          part.loop = false;
+          timerGUI.loop = false;
+        } else {
+          looping = true;
+          timerGUI.loop = true;
+          LButton.style("background-color: #febc17;"); 
+          console.log("Looping: " + looping);
+          part.loop = true;
+        } 
+      }
+    });
+    // Rhythmic Augmentation
+    AButton = p.createButton("A");
+    AButton.position(243, 0);
+    AButton.style(style);
+    AButton.mousePressed(() =>{
+      if(enabled){
+          if(augmented){
+          augmented = false;
+          AButton.style("background-color: #cfcfcf;");
+          console.log("augmented: " + augmented);
+        } else {
+          augmented = true;
+          AButton.style("background-color: #febc17;");
+          LButton.style("background-color: #cfcfcf;");
+          looping = false;
+          part.dispose(); // restart the part
+          timerGUI.dispose();
+//          LButton.mousePressed();
+          console.log("augmented: " + augmented);
+        }
+      }
+    })
+    //SButton, OctupButton, OctdnButton
+    SButton = p.createButton("+8n");
+    SButton.position(278, 0);
+    SButton.style(style);
+    SButton.mousePressed(()=>{
+      if(enabled){
+        if(shifted){
+          shifted = false;
+          SButton.style("background-color: #cfcfcf;");
+          console.log("shifted: " + shifted);
+        } else {
+          shifted = true;
+          SButton.style("background-color: #febc17;");
+          console.log("shifted: " + shifted);
+        }
+      }
+
+    });
+    OctdnButton = p.createButton("Dn");
+    OctdnButton.position(208, 35);
+    OctdnButton.style(style); 
+    OctdnButton.mousePressed(()=>{
+      if(enabled){
+        p.downOctave();
+        p.octButtonColor();
+      }    
+    });
+    OctupButton = p.createButton("Up"); 
+    OctupButton.position(278, 35);
+    OctupButton.style(style); 
+    OctupButton.mousePressed(()=>{
+      if(enabled){
+        p.upOctave();
+        p.octButtonColor();
+      }
+    });
+    }
+  
+  p.octButtonColor = function(){
+    if(obj.hasOwnProperty("octave")){
+      console.log("octave up: " + obj.octave);
+      switch(obj.octave){
+        case -1:
+          OctdnButton.style("background-color: yellow;"); //yellow
+          OctupButton.style("background-color: #cfcfcf;");
+          break;
+        case -2:
+          OctdnButton.style("background-color: orange;"); //orange
+          OctupButton.style("background-color: #cfcfcf;");
+          break;
+        case -3:
+          OctdnButton.style("background-color: red;"); //red
+          OctupButton.style("background-color: #cfcfcf;");
+          break;
+        case 1:
+          OctupButton.style("background-color: green;"); //green
+          OctdnButton.style("background-color: #cfcfcf;");
+          break;
+        case 2:
+          OctupButton.style("background-color: blue"); //blue
+          OctdnButton.style("background-color: #cfcfcf;");
+          break;
+        case 3:
+          OctupButton.style("background-color: violet"); // violet
+          OctdnButton.style("background-color: #cfcfcf;");
+          break;
+        default:
+          OctupButton.style("background-color: #cfcfcf;");
+          OctdnButton.style("background-color: #cfcfcf;");
+      }
+    }
   }
   
   p.draw = function(){
@@ -97,15 +224,15 @@ const seqGUI = p => {
       p.textSize(14);
       p.text(obj.num + ".", 5, 4);
       //p.text(obj.duration, 20, 5);
-      proll.display(obj.duration, obj.sequence);
+      proll.display(obj.duration, obj.sequence, velocity);
     }
     //playTimer.display(); // progress display
     playTimer.isFinished(); // double check the timer
     proll.isFinished();
     playButton.display(); // play button
-    loopButton.display("L", looping); // loop button
-    augButton.display("A", augmented); // augmentation button
-    shift8nButton.display("+8n", shifted); // 8n shift button
+    //loopButton.display("L", looping); // loop button
+    //augButton.display("A", augmented); // augmentation button
+    // shift8nButton.display("+8n", shifted); // 8n shift button
     p.textAlign(p.CENTER, p.CENTER);
     p.textSize(8);
     p.text("octave:", p.width * 9.7/12, p.height * 2.4/4);
@@ -115,14 +242,14 @@ const seqGUI = p => {
       octave = "+" + octave;
     }
     p.text(octave, p.width * 9.7/12, p.height* 3.2/4);
-    upOctave.display(obj.octave);
-    downOctave.display(obj.octave);
+    // upOctave.display(obj.octave);
+    // downOctave.display(obj.octave);
     p.textAlign(p.LEFT, p.CENTER);
     p.textSize(12);
-    p.text("vel", p.width/6, 58); 
+    p.text("vel", 65, 58); 
     //velocity = volSlider.value();
 //    p.text(part.state, 30, p.height/2)
-    // p.text(volSlider.value(), 20, 7);
+  //   p.text(volSlider.value(), 20, 7); // percentage
   }
 
   p.play = function(){
@@ -151,8 +278,13 @@ const seqGUI = p => {
       if(augmented){
         d *= 2;
       }
-      playTimer.start(d);
-      proll.start(d);
+      //Tone.draw() ??
+      Tone.Draw.schedule(function(){
+        //this callback is invoked from a requestAnimationFrame
+        //and will be invoked close to AudioContext time
+        playTimer.start(d);
+        proll.start(d);
+      }, time);
       //console.log("playTimer dur: " + setTime.dur);
     }), [{"time" : 0, "dur" : part.loopEnd}]).start(t);
     
@@ -180,8 +312,9 @@ const seqGUI = p => {
 
   p.upOctave = function(){
     if(obj.hasOwnProperty("octave")){
-      if(obj.octave < 3)
+      if(obj.octave < 3){
         obj.octave ++;
+      }
     }
   }
 
@@ -216,47 +349,30 @@ const seqGUI = p => {
       times[2] = 2; // shift one eighth note
     }
     t = times[0] + ":" + times[1] + ":" + times[2];
-    return t;
-    
+    return t; 
   }
-/** 
-  p.isVisible = function(){
-    //based on code tutorial by Phuoc Nguyen, 02 May, 2020, https://phuoc.ng/collection/html-dom/check-if-an-element-is-visible-in-a-scrollable-container/ 
-    // is the player div visible in the container div? 
-    // Use this to limit tap targets to visible players only
-    let eleTop = playerDiv.offsetTop;
-    let eleBottom = eleTop + playerDiv.clientHeight;
 
-    let containerTop = container.scrollTop;
-    let containerBottom = containerTop + container.clientHeight;
-
-    return (
-      (eleTop >= containerTop && eleBottom <= containerBottom) ||
-      // Some part of the element is visible in the container
-      (eleTop < containerTop && containerTop < eleBottom) ||
-      (eleTop < containerBottom && containerBottom < eleBottom)
-    );
-  }
-  */
+ /*
   p.mousePressed = function(){
   
     if(enabled){ // check if player is visible first
       //play button
       if(p.dist(p.mouseX, p.mouseY, playButton.x, playButton.y) < playButton.w/2){
-        // console.log("play button");
+       // console.log("play button");
         if(part.state == "started"){
           part.dispose();
           timerGUI.dispose();
         }
         p.play();
+
       }
       // up octave
       if(p.dist(p.mouseX, p.mouseY, upOctave.x, upOctave.y) < upOctave.w/2){
-        p.upOctave();
+        //p.upOctave();
       }
       // down octave
       if(p.dist(p.mouseX, p.mouseY, downOctave.x, downOctave.y) < downOctave.w/2){
-        p.downOctave();
+        //p.downOctave();
       }
       // loop button
       if(p.dist(p.mouseX, p.mouseY, loopButton.x, loopButton.y) < loopButton.w/2){
@@ -271,7 +387,9 @@ const seqGUI = p => {
           console.log("Looping: " + looping);
           part.loop = true;
         }
+
       }
+
       // rhythmic augmentation button
       if(p.dist(p.mouseX, p.mouseY, augButton.x, augButton.y) < augButton.w/2){
         if(augmented){
@@ -284,8 +402,11 @@ const seqGUI = p => {
           looping = false;
   //        console.log(augmented);
         }
-      }
+
+      }      
+
       if(p.dist(p.mouseX, p.mouseY, shift8nButton.x, shift8nButton.y) < shift8nButton.w/2){
+
         if(shifted){
           shifted = false;
           console.log(shifted);
@@ -296,6 +417,7 @@ const seqGUI = p => {
       }
   }
   }
+*/
 }
 
 class PlayButton {
@@ -489,7 +611,7 @@ class PianoRoll {
     this.startTime = 0;
   }
 
-  display(dur, seq){
+  display(dur, seq, vel){
     this.p.push();
     this.p.translate(this.x, this.y);
     this.p.fill(210, 110); // pale grey, translucent
@@ -530,7 +652,12 @@ class PianoRoll {
       this.p.line(i * barline, 0, i * barline, this.h);
     }
     //draw notes
-    this.p.fill("#a0144faf");
+    let r = 160;
+    let g = 20;
+    let b = 79;
+    let tr = 50 + (125 * vel); 
+    this.p.fill(r, g, b, tr);// velocity could affect this
+//    this.p.fill("#a0144faf");// velocity could affect this
     this.p.noStroke();
     if(Array.isArray(seq)){
       for(let i = 0; i < seq.length; i++){

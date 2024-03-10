@@ -72,7 +72,6 @@ window.addEventListener("load", (event) => {
     endScrolling(); //scrollend unsupported
     //Safari MacOS and iOS
   }
-
 });
 
 function scroll(e){
@@ -101,7 +100,6 @@ function scroll(e){
 //let y = sequenceNum * 74.25;
   sequenceDiv.scroll({top: y, left: 0, behavior: "smooth",});
   
-
 } 
 
 /** generate custom QR code leading to the hosted page (wherever it is) */
@@ -109,7 +107,7 @@ let qrLink = document.getElementById("QRLink");
 let qrCode = document.createElement("img");
 let link = "https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=";
 let thisPage = window.location.href;
-  //console.log(thisPage);
+console.log(thisPage);
 //  console.log(document.URL);
 qrCode.src = link + thisPage;
 //  qrCode.src = "https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=https://www.mrc-productivity.com/techblog/?p=1172";
