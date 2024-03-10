@@ -7,10 +7,10 @@ var bpm = 126; // default tempo
 var metro = "off"; // metronome state
 var ostinato = "off"; // ostinato state
 
-const ctx = new Tone.Context({ latencyHint : "playback", lookAhead: 0.6 });
-Tone.setContext(ctx);
-//Tone.context.lookAhead = 0.6;
-//Tone.context.latencyHint = "playback";
+//const ctx = new Tone.Context({ latencyHint : "playback", lookAhead: 0.6 });
+//Tone.setContext(ctx);
+Tone.context.lookAhead = 0.5;
+Tone.context.latencyHint = "playback";
 console.log("lookAhead: " + Tone.context.lookAhead);
 console.log("latencyHint: " + Tone.context.latencyHint);
 
