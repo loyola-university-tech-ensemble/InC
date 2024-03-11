@@ -7,6 +7,22 @@ Tone.context.lookAhead = 0.5;
 console.log("default tempo: " + bpm + " bpm");
 Tone.Transport.bpm.value = bpm;
 
+const bpmLabel = document.getElementById("bpm-label");
+bpmLabel.innerText = Tone.Transport.bpm.value + " bpm";
+
+let ts = document.getElementById("tSlider");
+ts.addEventListener('input', (e) => {
+  Tone.Transport.bpm.value = bpm * (e.target.value * 0.01 + 1); 
+  bpmLabel.innerText = Math.trunc(Tone.Transport.bpm.value) + " bpm";
+  //console.log("tempo " + Tone.Transport.bpm.value) 
+});
+
+ts.addEventListener('change', ()=>{
+  ts.value = 0;
+  Tone.Transport.bpm.value = bpm;
+  bpmLabel.innerText = Tone.Transport.bpm.value + " bpm";
+//  console.log("tempo " + Tone.Transport.bpm.value) 
+});
 
 /**
  * load all the In C Patterns into the 'patterns' div
