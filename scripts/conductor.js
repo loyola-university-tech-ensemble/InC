@@ -69,7 +69,7 @@ function endScrolling(){
       // console.log("npb: " + npb);
       npb++; // keep track of how many are visible
     } else {
-      sketches[i].noLoop();
+      sketches[i].reset();
       sketches[i].disable();
     }
   }
