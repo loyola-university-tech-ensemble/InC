@@ -30,6 +30,12 @@ let sequenceNum = 0;
   endScrolling();
 })
 */
+
+for(let i = 0; i < 4; i++){
+  //enable first 4 sequences (Firefox MacOS)
+  sketches[i].enable();
+}
+
 if ('onscrollend' in window) {
   sequenceDiv.onscrollend = endScrolling;
 }
@@ -54,7 +60,7 @@ function endScrolling(){
       sequenceNum = i - s; // locate the current top player for back/fwd buttons
       s++; // keep track of how many are visible
     } else {
-      sketches[i].noLoop();
+      sketches[i].reset();
       sketches[i].disable();
     }
   }

@@ -19,16 +19,42 @@ var synthLibrary = [
   {
     name: "Synth 1",
     type: "Synth",
-    settings: {},
+    settings: {
+      "volume": 0, 
+      "detune": 0,
+      "portamento": 0.05,
+      "envelope": {
+        "attack": 0.005,
+        "attackCurve": "linear",
+        "decay": 0.1,
+        "decayCurve": "exponential",
+        "release": 1,
+        "releaseCurve": "exponential",
+        "sustain": 0.3
+      },
+      "oscillator": {
+        "partialCount": 0,
+        "partials": [],
+        "phase": 0,
+        "type": "triangle",
+        "harmonicity": 1,
+        "modulationType": "square",
+        "count" : 3,
+        "modulationFrequency" : 0.4,
+        "modulationIndex": 2,
+        "spread": 20,
+        "width":0.2
+      }
+    },
     polyphonic: true
   },
   {
-    name: "Synth 2",
+    name: "Squarinet",
     type: "Synth",
     settings:{
-      "volume": 0,
+      "volume": -6,
       "detune": 0,
-      "portamento": 0.05,
+      "portamento": 0,
       "envelope": {
         "attack": 0.05,
         "attackCurve": "exponential",
@@ -39,12 +65,18 @@ var synthLibrary = [
         "sustain": 0.2
       },
       "oscillator": {
-        "partialCount": 0,
-        "partials": [],
+        "partialCount": 7,
+        "partials": [
+          1.2732395447351628,
+          0,
+          0.4244131815783876,
+          0,
+          0.25464790894703254,
+          0,
+          0.18189136353359467
+        ],
         "phase": 0,
-        "type": "amtriangle",
-        "harmonicity": 0.5,
-        "modulationType": "sine"
+        "type": "square7"
       }
     },
     polyphonic: true
@@ -92,44 +124,57 @@ var synthLibrary = [
     polyphonic: true
   },
   {
-    name: "AM Pad 1",
-    type: "AMSynth",
+    name: "Doorbell", //Finneas Bujdei 2024 (COMP 122)
+    type: "Synth",
     settings: {
-      "volume": 0,
-      "detune": 0,
-      "portamento": 0,
-      "harmonicity": 2.5,
+      "detune": "1200",
+      "portamento": "0.5",
+      "volume": "-11",
       "oscillator": {
-        "partialCount": 0,
-        "partials": [],
+        "type": "sine",
         "phase": 0,
-        "type": "fatsawtooth",
-        "count": 3,
-        "spread": 20
+        "partialCount": "0",
+        "partials": []
       },
       "envelope": {
-        "attack": 0.1,
-        "attackCurve": "linear",
-        "decay": 0.2,
+        "attack": "0.01",
+        "attackCurve": "exponential",
+        "decay": "0.1",
         "decayCurve": "exponential",
-        "release": 0.3,
-        "releaseCurve": "exponential",
-        "sustain": 0.2
+        "sustain": "0.5",
+        "release": "1",
+        "releaseCurve": "linear"
+      }
+    },
+    polyphonic: true
+  }, 
+  {
+    name : "New Wave", // Chris Diaz 2024 (COMP 122)
+    type : "Synth",
+    settings : {
+      "volume": -6,
+      "detune": -3,
+      "portamento": 0,
+      "envelope": {
+        "attack": 0.01,
+        "attackCurve": "ripple",
+        "decay": 0.5,
+        "decayCurve": "linear",
+        "release": 1,
+        "releaseCurve": "ripple",
+        "sustain": 0.5
       },
-      "modulation": {
-        "partialCount": 0,
-        "partials": [],
+      "oscillator": {
+        "partialCount": 3,
+        "partials": [
+          0.39,
+          0.53,
+          0.67
+        ],
         "phase": 0,
-        "type": "square"
-      },
-      "modulationEnvelope": {
-        "attack": 0.5,
-        "attackCurve": "linear",
-        "decay": 0.01,
-        "decayCurve": "exponential",
-        "release": 0.5,
-        "releaseCurve": "exponential",
-        "sustain": 1
+        "type": "fatcustom",
+        "count": 3,
+        "spread": 20
       }
     },
     polyphonic: true

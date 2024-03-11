@@ -10,7 +10,7 @@ var ostinato = "off"; // ostinato state
 //const ctx = new Tone.Context({ latencyHint : "playback", lookAhead: 0.6 });
 //Tone.setContext(ctx);
 Tone.context.lookAhead = 0.6;
-Tone.context.latencyHint = "playback";
+//Tone.context.latencyHint = "playback";
 console.log("lookAhead: " + Tone.context.lookAhead);
 console.log("latencyHint: " + Tone.context.latencyHint);
 
@@ -130,7 +130,7 @@ function startClick(){
       click.style.background = '#a0144f';
       click.style.color = '#febc17';
       clickLoop.stop();
-      dbClickLoop.stop();
+      //dbClickLoop.stop();
       break;
     default:
       Tone.Transport.start();
@@ -169,7 +169,7 @@ ost.addEventListener('click', () => {
 });
 
 //const ostSynth = new Tone.PolySynth(Tone.Synth).toDestination();
-var ostSynth = synthLibrary[1].synth; // pull from synth library
+//var ostSynth = synthLibrary[1].synth; // pull from synth library
 const ostLoop = new Tone.Part(function (time, value){
   ostPiano.triggerAttackRelease(value.note, "16n", time, value.vel);
 }, [{"time" : 0, "note" : ["C5"], "vel": 2}, 
