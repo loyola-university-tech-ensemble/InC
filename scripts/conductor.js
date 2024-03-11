@@ -38,7 +38,7 @@ function makeSeqConductor(obj){
  * Control vertical scrolling of sequence players
  */
 
-endScrolling(); // call endScrolling() when the page loads to enable the visible players
+//endScrolling(); // call endScrolling() when the page loads to enable the visible players
 
 if ('onscrollend' in window) {
   sequenceDiv.onscrollend = endScrolling;
@@ -70,6 +70,7 @@ function endScrolling(){
       npb++; // keep track of how many are visible
     } else {
       sketches[i].reset();
+      sketches[i].noLoop(); 
       sketches[i].disable();
     }
   }
