@@ -69,12 +69,13 @@ body{
 /* click and ostinato buttons */
 .syncButton {
   height: 40px;
-  width: 80px;
+  width: 70px;
   background-color: #a0144f;
   border-color: #febc17;
   color: #febc17;
   border-radius: 10px;
   border-width: 5px;
+  margin: 10px;
 }
 .tempo-slider {
   width: 120px;
@@ -82,7 +83,6 @@ body{
   height: 100px;
   margin: auto;
   padding-top: 10px;
-
 }
 
 /* contains volume slider and synth select menu */
@@ -269,6 +269,8 @@ body{
 
 
 /********** Range Input Styles **********/
+
+
 /*Range Reset*/
 input[type="range"] {
   -webkit-appearance: none;
@@ -284,7 +286,6 @@ input[type="range"] {
 input[type="range"]:focus {
   outline: none;
 }
-
 /***** Chrome, Safari, Opera and Edge Chromium styles *****/
 /* slider track */
 input[type="range"]::-webkit-slider-runnable-track {

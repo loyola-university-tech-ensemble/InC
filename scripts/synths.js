@@ -265,12 +265,12 @@ const drumSampler = new Tone.Sampler(
   }
 ).toDestination();
 
-//const reverb = new Tone.Reverb(0.5).toDestination();
+const ostPianoGain = new Tone.Gain(0.3).toDestination();
 /** define a piano sampler for the ostinato */
 const ostPiano = new Tone.Sampler({
   urls: {
     "C5" : "drums/piano-note-upright-rvb_85bpm_A_major.wav"
   }
 })
-ostPiano.toDestination();
+ostPiano.connect(ostPianoGain);
 
