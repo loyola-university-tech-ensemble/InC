@@ -7,6 +7,34 @@ body {
     flex-wrap: wrap;
     margin: auto;
 }
+.header {
+  width: 95vw;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  margin: auto;
+  align-items: center;
+}
+
+.title {
+  width: 50%;
+  padding-left: 30px;
+}
+
+.logo {
+  width: 100px;
+  height: 100px;
+  padding-right: 10px;
+}
+
+.link{
+  text-align: center;
+  margin: auto;
+  display: block;
+  position: relative;
+  padding-right: 30px;
+}
 .label {
     background-color: rgb(155, 3, 99);
     color: beige;
@@ -80,10 +108,11 @@ body {
 .outer-box {
 /*    border-style: solid; */
     display: inline-flex;
-    margin: auto;
+    justify-content: space-between;
+
     height: 350px;
     width: 95vw;
-    max-width: 1200;
+    max-width: 1523px;
     position: relative;
     overflow-x: scroll;
 }

@@ -15,11 +15,18 @@
 </head>
 
 <body>
-<div class="header">   
-    <h3><i>In C</i> for Mobile Technology Play-Along</h3>
-    <p>Loyola University Technology Ensemble (LUTE). For the conductor on a larger screen (not for mobile!). <br>
-    Return to the <a href="../">Player App</a></p>
-    <h1>Conductor</h1>
+<div class="header"> 
+    <div class="title">
+        <h3><i>In C</i> for Mobile Technology Play-Along</h3>
+        <div style="display: flex; align-items: center;">
+            <img class="logo" src="LUC-logo.jpg" alt="Loyola University Chicago Logo">
+            <div><p style="font-weight: bold;">Loyola University Technology Ensemble (LUTE).</p><p>For the conductor on a larger screen (not for mobile!). <br>
+            Return to the <a href="../">Player App</a></p></div>
+            
+        </div>
+        <h1>Conductor</h1>
+    </div>  
+    <div class="link" id="QRLink"><h1>https://lute.luc.edu/InC</h1></div>
 </div> 
 <div class="outer-box">
     <div class="controls" id="controls">
@@ -53,7 +60,7 @@
         </div>
     </div>
     <div class="progress" id="progress">
-        <div><center><h1>Now Playing</h1></center></div>
+        <div><h1 style="text-align:center">Now Playing</h1></div>
         <div class="nowPlaying">
             <div class="NPnumberBox" id="NPnumberBox_0">1.</div>
             <div class="NPnumberBox" id="NPnumberBox_1">2.</div>

@@ -368,3 +368,14 @@ function setBeatMenu(m, a, s){
     }
   });
 }
+
+/** generate custom QR code leading to the hosted page (wherever it is) */
+let qrLink = document.getElementById("QRLink");
+let qrCode = document.createElement("img");
+let link = "https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=";
+let thisPage = "https://lute.luc.edu/InC";
+console.log(thisPage);
+//  console.log(document.URL);
+qrCode.src = link + thisPage;
+//  qrCode.src = "https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=https://www.mrc-productivity.com/techblog/?p=1172";
+qrLink.appendChild(qrCode);
