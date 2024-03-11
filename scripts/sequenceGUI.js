@@ -44,7 +44,7 @@ const seqGUI = p => {
       num = obj.num;
       if(document.getElementById("sequence_" + num)){
         playerDiv = document.getElementById("sequence_" + num);
-        console.log("loaded object for " + "sequence_" + num);
+        // console.log("loaded object for " + "sequence_" + num);
       }
     }
   }
@@ -78,6 +78,20 @@ const seqGUI = p => {
       velocity = volSlider.value();
     });
     p.controlButtons(); 
+  }
+
+  p.reset = function(){
+    part.loop = false;
+    timerGUI.loop = false;
+    shifted = false;
+    looping = false;
+    augmented = false;
+    obj.octave = 0;
+    LButton.style("background-color: #cfcfcf;");
+    AButton.style("background-color: #cfcfcf;");
+    SButton.style("background-color: #cfcfcf;");
+    OctupButton.style("background-color: #cfcfcf;");
+    OctdnButton.style("background-color: #cfcfcf;");
   }
 
   p.controlButtons = function(){
