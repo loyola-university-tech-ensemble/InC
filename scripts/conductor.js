@@ -92,7 +92,7 @@ function endScrolling(){
       npb++; // keep track of how many are visible
     } else {
       sketches[i].reset();
-      sketches[i].noLoop(); 
+      //sketches[i].noLoop(); 
       sketches[i].disable();
     }
   }
@@ -100,7 +100,7 @@ function endScrolling(){
 
 //const ostSynth = new Tone.PolySynth(Tone.Synth).toDestination();
 var ostLoop = new Tone.Part(function (time, value){
-  ostSynth.triggerAttackRelease(value.note, "16n", time, value.vel);
+  ostSynth.triggerAttack(value.note, time, value.vel);
 }, ostPatterns[0].pattern);
 ostLoop.loop = true;
 
@@ -117,7 +117,7 @@ ostMenu.addEventListener('change', (e) => {
   console.log(`Change ostinato to number ${i}`);
   ostLoop.dispose();
   ostLoop = new Tone.Part(function (time, value){
-    ostSynth.triggerAttackRelease(value.note, "16n", time, value.vel);
+    ostSynth.triggerAttack(value.note, time, value.vel);
   }, ostPatterns[i].pattern);
   ostLoop.loop = true;
   if(ostinato){
@@ -277,10 +277,10 @@ const ostreverb = new Tone.Reverb(0.5).connect(ostGain);
 /** define a piano sampler for the ostinato */
 const ostSynth = new Tone.Sampler({
   urls: {
-    "C5" : "drums/piano-note-upright-dry_85bpm_A_major.wav"
+    "C5" : "drums/piano-note-upright-rvb_85bpm_A_major.wav"
   }
 })
-ostSynth.connect(ostreverb);
+ostSynth.connect(ostGain);
 
 const ostVolSlider = document.getElementById("ostVolume");
 ostVolSlider.style = "padding: 20px;";

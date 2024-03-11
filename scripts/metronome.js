@@ -171,15 +171,15 @@ ost.addEventListener('click', () => {
 //const ostSynth = new Tone.PolySynth(Tone.Synth).toDestination();
 //var ostSynth = synthLibrary[1].synth; // pull from synth library
 const ostLoop = new Tone.Part(function (time, value){
-  ostPiano.triggerAttackRelease(value.note, "16n", time, value.vel);
-}, [{"time" : 0, "note" : ["C5"], "vel": 2}, 
-    {"time" : "0:0:2", "note" : ["C5"], "vel": 0.5}, 
-    {"time" : "0:1:0", "note" : ["C5"], "vel": 1.5},
-    {"time" : "0:1:2", "note" : ["C5"], "vel": 0.5}, 
-    {"time" : "0:2:0", "note" : ["C5"], "vel": 1.5},
-    {"time" : "0:2:2", "note" : ["C5"], "vel": 0.5}, 
-    {"time" : "0:3:0", "note" : ["C5"], "vel": 1.5},
-    {"time" : "0:3:2", "note" : ["C5"], "vel": 0.5}
+  ostPiano.triggerAttack(value.note, time, value.vel);
+}, [{"time" : "0:0:0", "note" : ["C5"], "vel": 0.5}, 
+    {"time" : "0:0:2", "note" : ["C5"], "vel": 0.3}, 
+    {"time" : "0:1:0", "note" : ["C5"], "vel": 0.5},
+    {"time" : "0:1:2", "note" : ["C5"], "vel": 0.3}, 
+    {"time" : "0:2:0", "note" : ["C5"], "vel": 0.5},
+    {"time" : "0:2:2", "note" : ["C5"], "vel": 0.3}, 
+    {"time" : "0:3:0", "note" : ["C5"], "vel": 0.5},
+    {"time" : "0:3:2", "note" : ["C5"], "vel": 0.3}
    ]);
 ostLoop.loop = true;
 
