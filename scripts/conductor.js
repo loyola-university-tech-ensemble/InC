@@ -50,6 +50,12 @@ else {
   }
 }
 
+for(let i = 0; i < 4; i++){
+  sketches[i].enable(); 
+  // enable the first four by default
+  // no scrolling required
+}
+
 
 function endScrolling(){
   let divTop = sequenceDiv.scrollTop;
