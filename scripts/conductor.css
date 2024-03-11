@@ -122,11 +122,11 @@ body {
 /*  border-color: #a0144f; */
   position: relative;
   display: block;
-  width: 384px;
+  width: 320px; 
 }
 
 .patterns {
-    height: 297px;
+    height: 296px;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
     position: relative;
@@ -148,7 +148,7 @@ body {
   /*  border-style: solid; */
     margin: auto;
     height: 50px;
-    width: 380px;
+    width: 320px;
     margin: auto;
     background-color: #cfcfcf;
 }
