@@ -141,7 +141,8 @@ body {
     background-color: rgb(179, 0, 86);
     color: beige;
     width: 50%;
-    max-width: 200px;
+    max-width: 200px; 
+    min-width: 100px;
     height: 50px;
     border-radius: 10px;
 }
@@ -189,6 +190,15 @@ body {
   text-align: center;
   color: #5d0024;
   margin: 10px;
+}
+
+.navigator {
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 55px;
+  background-color: #fde4a9;
 }
 
 .progress {

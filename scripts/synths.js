@@ -252,7 +252,7 @@ const drumSampler = new Tone.Sampler(
   {
     urls: {
       "A3": "drums/Kick.wav",
-      "A#3": "drums/Kick.wav",
+      "A#3": "drums/rim-808_G#_major.wav",
       "B3": "drums/Snare.wav",
       "C4": "drums/Claps.wav",
       "C#4": "drums/Shot1.wav",

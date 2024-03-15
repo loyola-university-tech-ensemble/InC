@@ -44,7 +44,10 @@
         <div class="controllerDiv">
             <button id="beatButton" class="controlButton">Start Beats</button>            
             <input id="beatVolume" type="range" size="120px" value="1" min="0" max="1" step="0.05">
-            <select id="beatMenu" style="width: 150px" class="synthSequenceMenu"></select>
+            <div>
+                <select id="beatMenu" style="width: 150px" class="synthSequenceMenu"></select>
+                <select id="fillMenu" style="width: 150px" class="synthSequenceMenu"></select>
+            </div>
         </div>
 
         <div class="controllerDiv"> 
@@ -55,11 +58,15 @@
 
     </div>
     <div class="sequencer">
-    <div class="patterns" id="patterns"></div>
-    <div class="patternVoice">
-        <select style="width: 150px" id="synth-selector" class="synthSequenceMenu"></select>
-        <input type="range" id="volume" name = "volume" min="0" max="1" value="1" step="0.01" style="width: 150px; height: 20px; padding: 10px">
+        <div class="patterns" id="patterns"></div>
+        <div class="patternVoice">
+            <select style="width: 150px" id="synth-selector" class="synthSequenceMenu"></select>
+            <input type="range" id="volume" name = "volume" min="0" max="1" value="1" step="0.01" style="width: 150px; height: 20px; padding: 10px">
         </div>
+    </div>
+    <div class="navigator">
+        <button class="controlButton" id="back-button">Back</button>
+        <button class="controlButton" id="forward-button">Forward</button>
     </div>
     <div class="progress" id="progress">
         <div><h1 style="text-align:center">Now Playing</h1></div>

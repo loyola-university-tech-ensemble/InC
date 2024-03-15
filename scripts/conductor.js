@@ -55,6 +55,41 @@ function makeSeqConductor(obj){
  */
 
 //endScrolling(); // call endScrolling() when the page loads to enable the visible players
+let backButton = document.getElementById("back-button");
+let forwardButton = document.getElementById("forward-button");
+let sequenceNum = 0;
+
+forwardButton.addEventListener('click', scroll);
+backButton.addEventListener('click', scroll);
+
+function scroll(e){
+  let inc = 0; // increment
+  switch(e.currentTarget.id){
+    case "forward-button":
+      inc = 1;
+      break;  
+    case "back-button":
+      inc = -1;
+      break;
+    default:
+      inc = 0;
+
+  }
+  sequenceNum += inc;
+  
+  if(sequenceNum > (sketches.length - 4)){
+    sequenceNum = sketches.length - 4; // stop 4 from the end
+  } else if(sequenceNum < 0){
+    sequenceNum = 0; // stop at 0
+  }
+  let id = "sequence_" + (sequenceNum +1);
+  let seq = document.getElementById(id);
+  let y = seq.offsetTop;
+//let y = sequenceNum * 74.25;
+  sequenceDiv.scroll({top: y, left: 0, behavior: "smooth",});
+  
+} 
+
 
 if ('onscrollend' in window) {
   sequenceDiv.onscrollend = endScrolling;
@@ -252,7 +287,7 @@ const beatsSampler = new Tone.Sampler(
     {
       urls: {
         "A3": "drums/Kick.wav",
-        "A#3": "drums/Kick.wav",
+        "A#3": "drums/rim-808_G#_major.wav",
         "B3": "drums/Snare.wav",
         "C4": "drums/Claps.wav",
         "C#4": "drums/Shot1.wav",
@@ -290,7 +325,7 @@ ostVolSlider.addEventListener('input', (e) => {
 
 const drumsArray = [
   {"pitch" : "A3", "name" : "kick"},
-  {"pitch" : "A#3", "name" : "kick"},
+  {"pitch" : "A#3", "name" : "rim shot"},
   {"pitch" : "B3", "name" : "snare"},
   {"pitch" : "C4", "name" : "claps"},
   {"pitch" : "C#4", "name" : "shot 1"},
@@ -367,6 +402,38 @@ function setBeatMenu(m, a, s){
       s.clearPattern();
     }
   });
+}
+
+const fillMenu = document.getElementById("fillMenu");
+
+setFillMenu(fillMenu, drumFills, BeatSequencer);
+
+function setFillMenu(m, a, s){
+  //m is the menu to fill
+  //a = array of drum fill sequences
+  //s drum sequencer GUI
+  let opt = document.createElement('option');
+  opt.value = -1;
+  opt.text = "play a drum fill";
+  m.add(opt);
+  for(let i = 0; i < a.length; i++){
+    opt = document.createElement('option');
+    opt.value = i;
+    opt.text = a[i].name;
+    m.add(opt);
+  } // populate the beat patterns menu
+  m.add(opt);
+
+  m.addEventListener('change', (e) => {
+    let i = e.target.value;
+    if(i >= 0){
+      //console.log(a[i].pattern);
+      s.playFill(a[i].pattern);
+    } else {
+      //console.log("clear beat patterns")
+    }
+  });
+
 }
 
 /** generate custom QR code leading to the hosted page (wherever it is) */

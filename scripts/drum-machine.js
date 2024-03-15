@@ -32,6 +32,14 @@ const beatsGUI = p =>{
         }
     }
   
+    // play a one-shot drum fill
+    p.playFill = function(sequence){
+      const part = new Tone.Part(((time, value) => {
+        // value is an object that contains the pitch
+        beatsSampler.triggerAttack(value.pitch, time);
+      }), sequence).start(getNextbeat());
+    }
+
     p.startLoop = function(){
       if(playing){
         drumLoop.stop();
@@ -42,7 +50,6 @@ const beatsGUI = p =>{
         playing = true;
         i = 0;
       }
-  
     }
 
     p.changePattern = function(pattern){
