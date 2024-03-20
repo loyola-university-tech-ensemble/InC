@@ -136,7 +136,7 @@ const seqGUI = p => {
       }
     });
     // Rhythmic Augmentation
-    AButton = p.createButton("A");
+    AButton = p.createButton(".5x");
     AButton.position(243, 0);
     AButton.style(style);
     AButton.mousePressed(() =>{
