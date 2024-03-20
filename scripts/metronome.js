@@ -173,13 +173,9 @@ ost.addEventListener('click', () => {
 const ostLoop = new Tone.Part(function (time, value){
   ostPiano.triggerAttack(value.note, time, value.vel);
 }, [{"time" : "0:0:0", "note" : ["C5"], "vel": 0.5}, 
-    {"time" : "0:0:2", "note" : ["C5"], "vel": 0.3}, 
     {"time" : "0:1:0", "note" : ["C5"], "vel": 0.5},
-    {"time" : "0:1:2", "note" : ["C5"], "vel": 0.3}, 
     {"time" : "0:2:0", "note" : ["C5"], "vel": 0.5},
-    {"time" : "0:2:2", "note" : ["C5"], "vel": 0.3}, 
     {"time" : "0:3:0", "note" : ["C5"], "vel": 0.5},
-    {"time" : "0:3:2", "note" : ["C5"], "vel": 0.3}
    ]);
 ostLoop.loop = true;
 

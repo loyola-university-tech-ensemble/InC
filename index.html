@@ -27,19 +27,16 @@
   <div id="start" class='contents' style="display: none;">
     <div id='metronome' class="metronome">
       <div class="sync" id="sync-buttons">
-        <div>
-            <button class="syncButton" id="click">click</button>
-        </div>
-        <div class="tempo-slider">
-          <label for="tSlider" id="bpm-label" style="padding: 20px;">sync tempo</label>
-          <input type="range" id="tSlider" name="tSlider" min="-10" max="10" value="0" step="0.1" style="width: 100px; height: 20px; padding-bottom: 0">
-          <!--
-          <span style="font-size: smaller; padding-right: 10px"><-slower</span><span style="font-size: smaller; padding-left: 10px">faster-></span>
-          -->
-        </div>
-        <div>
-          <button class="syncButton" id="ostinato">ostinato</button>
-        </div>
+        <button class="syncButton" id="click">click</button>
+        <button class="syncButton" id="ostinato">ostinato</button>
+      </div>
+      <div class="tempo-slider">
+        <label for="tSlider" id="bpm-label" style="padding-bottom: 10px;">sync tempo</label>
+          <div class="sync-hint" style="width:280px; display: flex; justify-content: space-between;">
+            <span style="font-size: smaller;"><-slower</span>
+            <input type="range" id="tSlider" name="tSlider" min="-10" max="10" value="0" step="0.1" style="width: 150px; height: 20px; padding-bottom: 0">
+            <span style="font-size: smaller;">faster-></span>
+          </div>  
       </div>
     </div>
   </div>

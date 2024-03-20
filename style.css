@@ -69,7 +69,7 @@ body{
 /* click and ostinato buttons */
 .syncButton {
   height: 40px;
-  width: 70px;
+  width: 50%;
   background-color: #a0144f;
   border-color: #febc17;
   color: #febc17;
@@ -78,11 +78,13 @@ body{
   margin: 10px;
 }
 .tempo-slider {
-  width: 120px;
-  max-width: 120px;
-  height: 100px;
+  width: 100%;
+  max-width: 320px;
   margin: auto;
-  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* contains volume slider and synth select menu */
