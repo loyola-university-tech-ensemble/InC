@@ -9,6 +9,7 @@
   <link href="style.css" rel="stylesheet" type="text/css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"> </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"> </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"> </script> 
   <!-- zero-md for dynamically loading markdown files to HTML -->
   <script src="https://cdn.jsdelivr.net/npm/@webcomponents/webcomponentsjs@2/webcomponents-loader.min.js"></script>
   <script type="module" src="https://cdn.jsdelivr.net/gh/zerodevx/zero-md@1/src/zero-md.min.js"></script>
@@ -55,7 +56,9 @@
     <!-- <button id="forward-button" class='menu'>forward</button> -->
   </div>
   <button id="qrButton" class='menu'>View QR for mobile device</button>
-  <div id="QRLink" class='contents' style="display: none;"></div>
+  <div id="QRBlock" class='contents' style="display: none; text-align: center;">
+    <div id = "QRLink" style="margin: auto; width: 100px;"></div>
+  </div>
 <button id='part3' class='menu' style="width: 100%; justify-self: center;">About</button>
   <div id='part3-contents' class='contents' style="display: none;">
     <button id="part3instructionsButton" class='menu' style="width: 80%;">Instructions</button>
