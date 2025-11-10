@@ -103,7 +103,7 @@ var synthLibrary = [
         "phase": 0,
         "type": "fatsawtooth",
         "count": 3,
-        "spread": 30
+        "spread": 20
       }
     },
     polyphonic: true
