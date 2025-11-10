@@ -82,6 +82,33 @@ var synthLibrary = [
     polyphonic: true
   },
   {
+    name: "Jump Saw",
+    type: "Synth",
+    settings: {
+      "volume": -3,
+      "detune": 0,
+      "portamento": "0",
+      "envelope": {
+        "attack": "0.05",
+        "attackCurve": "linear",
+        "decay": "0.1",
+        "decayCurve": "exponential",
+        "release": "1",
+        "releaseCurve": "exponential",
+        "sustain": "0.3"
+      },
+      "oscillator": {
+        "partialCount": 0,
+        "partials": [],
+        "phase": 0,
+        "type": "fatsawtooth",
+        "count": 3,
+        "spread": 30
+      }
+    },
+    polyphonic: true
+  },
+  {
     "name": "FM Strings",
     "type": "Synth",
     "settings": {
