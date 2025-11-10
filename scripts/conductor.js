@@ -440,7 +440,7 @@ function setFillMenu(m, a, s){
 let qrLink = document.getElementById("QRLink");
 // let qrCode = document.createElement("div");
 // let link = "https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=";
- let thisPage = window.location.href;
+ let thisPage = "https://lute.luc.edu/InC";
  console.log("this page: " + thisPage);
 // console.log(document.URL);
 // let href = thisPage;
